@@ -8,7 +8,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
     public class UserController : Controller
     {
 
-        #region ACTION RESULS
+        #region ACTION RESULTS
         public IActionResult Index()
         {
             return View();
