@@ -12,7 +12,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Context
             : base(options)
         {
         }
-
+        public DbSet<Project> Projects { get; set; }
 
     }
 }
