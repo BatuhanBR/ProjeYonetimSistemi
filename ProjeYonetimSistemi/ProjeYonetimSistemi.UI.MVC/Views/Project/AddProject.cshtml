@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar Form Example</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0/dist/css/adminlte.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- Main Sidebar -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="index3.html" class="brand-link">
+                <img src="/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">AdminLTE 3</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar os-host os-theme-light os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-scrollbar-vertical-hidden os-host-transition">
+                <div class="os-resize-observer-host observed">
+                    <div class="os-resize-observer" style="left: 0px; right: auto;"></div>
+                </div>
+                <div class="os-size-auto-observer observed" style="height: calc(100% + 1px); float: left;">
+                    <div class="os-resize-observer"></div>
+                </div>
+                <div class="os-content-glue" style="margin: 0px -8px; width: 249px; height: 895px;"></div>
+                <div class="os-padding">
+                    <div class="os-viewport os-viewport-native-scrollbars-invisible">
+                        <div class="os-content" style="padding: 0px 8px; height: 100%; width: 100%;">
+
+                            <!-- Sidebar Menu -->
+                            <nav class="mt-2">
+                                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+                                    <a href="/#" class="nav-link">
+                                        <i class="fas fa-home"></i>
+                                        <p>
+                                            Ana Sayfa
+                                            <span class="right badge badge-danger">6</span>
+                                        </p>
+                                    </a>
+
+
+                                    <a href="/Project/Index" class="nav-link">
+                                        <i class="fas fa-project-diagram"></i>
+                                        <p>
+                                            Proje Yönetimi
+                                            <span class="right badge badge-danger">6</span>
+                                        </p>
+                                    </a>
+
+                                    <a href="/Task/Index" class="nav-link">
+                                        <i class="fas fa-tasks"></i>
+                                        <p>
+                                            Görev Yönetimi
+                                        </p>
+                                    </a>
+
+                                    <a href="/User/Index" class="nav-link">
+                                        <i class="fas fa-users"></i>
+                                        <p>
+                                            Kullanıcı Yönetimi
+                                        </p>
+                                    </a>
+
+
+                                    <a href="/Report/Index" class="nav-link">
+                                        <i class="fas fa-paperclip"></i>
+                                        <p>
+                                            Rapor Yönetimi
+                                        </p>
+                                    </a>
+
+                                </ul>
+                            </nav>
+                            <!-- /.sidebar-menu -->
+                        </div>
+                    </div>
+                </div>
+                <div class="os-scrollbar os-scrollbar-horizontal os-scrollbar-unusable os-scrollbar-auto-hidden">
+                    <div class="os-scrollbar-track">
+                        <div class="os-scrollbar-handle" style="width: 100%; transform: translate(0px, 0px);"></div>
+                    </div>
+                </div>
+                <div class="os-scrollbar os-scrollbar-vertical os-scrollbar-unusable os-scrollbar-auto-hidden">
+                    <div class="os-scrollbar-track">
+                        <div class="os-scrollbar-handle" style="height: 100%; transform: translate(0px, 0px);"></div>
+                    </div>
+                </div>
+                <div class="os-scrollbar-corner"></div>
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Proje Ekleme</h1>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- General Form -->
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title"></h3>
+                                </div>
+
+                                <form>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Proje İsmi</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Proje ismi Giriniz">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Ekip Üyeleri</label>
+                                            <select multiple class="form-control" id="exampleInputPassword1">
+                                                <option>Seçenek 1</option>
+                                                <option>Seçenek 2</option>
+                                                <option>Seçenek 3</option>
+                                                <option>Seçenek 4</option>
+                                                <option>Seçenek 5</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputDescription">Açıklama</label>
+                                            <textarea class="form-control" id="exampleInputDescription" rows="3" placeholder="Açıklama giriniz"></textarea>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary">Ekle</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0/dist/js/adminlte.min.js"></script>
+</body>
+
+</html>

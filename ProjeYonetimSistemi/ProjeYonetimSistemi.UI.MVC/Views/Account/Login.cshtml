@@ -1,63 +1,54 @@
-﻿
-@{
-
-	Layout = "_LoginLayOut";
+﻿@{
+    Layout = "_LoginLayOut";
 }
+
+@model ProjeYonetimSistemi.UI.MVC.Models.LoginViewModel
+
 <div class="login-box">
- 
-
-	<div class="card">
-		<div class="card-body login-card-body">
-			<h1 class="login-box-msg">Giriş Sayfası</h1>
-			<form action="~/Account/Login" method="post">
-				<div class="input-group mb-3">
-					<input type="email" class="form-control" placeholder="Email">
-					<div class="input-group-append">
-						<div class="input-group-text">
-							<span class="fas fa-envelope"></span>
-						</div>
-					</div>
-				</div>
-				<div class="input-group mb-3">
-					<input type="password" class="form-control" placeholder="Şifre">
-					<div class="input-group-append">
-						<div class="input-group-text">
-							<span class="fas fa-lock"></span>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-8">
-						<div class="icheck-primary">
-							<input type="checkbox" id="remember">
-							<label for="remember">
-								Beni Hatırla
-							</label>
-						</div>
-					</div>
-
-					<div class="col-4">
-						<button type="submit" class="btn btn-primary btn-block">Giriş Yap</button>
-					</div>
-
-				</div>
-			</form>
-		 
-
-			<p class="mb-1">
-				<a href="forgot-password.html">Şifremi Unuttum</a>
-			</p>
-			<p class="mb-0">
-				<a href="register.html" class="text-center">Yeni Kayıt</a>
-			</p>
-		</div>
-
-	</div>
+    <div class="card">
+        <div class="card-body login-card-body">
+            <h1 class="login-box-msg">Giriş Sayfası</h1>
+            <form asp-action="Login" asp-controller="Account" method="post">
+                @Html.AntiForgeryToken()
+                <div class="input-group mb-3">
+                    <input asp-for="Email" type="email" class="form-control" placeholder="Email">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
+                    </div>
+                </div>
+                <span asp-validation-for="Email" class="text-danger"></span>
+                <div class="input-group mb-3">
+                    <input asp-for="Password" type="password" class="form-control" placeholder="Şifre">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <span asp-validation-for="Password" class="text-danger"></span>
+                <div class="row">
+                    <div class="col-8">
+                        <div class="icheck-primary">
+                            <input asp-for="RememberMe" type="checkbox" id="remember">
+                            <label asp-for="RememberMe">
+                                Beni Hatırla
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary btn-block">Giriş Yap</button>
+                    </div>
+                </div>
+                <div class="validation-summary-errors text-danger" asp-validation-summary="ModelOnly"></div>
+            </form>
+            <p class="mb-1">
+                <a href="forgot-password.html">Şifremi Unuttum</a>
+            </p>
+            <p class="mb-0">
+                <a href="register.html" class="text-center">Yeni Kayıt</a>
+            </p>
+        </div>
+    </div>
 </div>
-
-
-<script src="~/plugins/jquery/jquery.min.js"></script>
-
-<script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<script src="~/js/adminlte.min.js?v=3.2.0"></script>
