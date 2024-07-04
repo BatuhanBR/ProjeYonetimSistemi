@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjeYonetimSistemi.UI.MVC.Context;
-using ProjeYonetimSistemi.UI.MVC.Models;
+using ProjeYonetimSistemi.UI.MVC.Entity;
 
 
 namespace ProjeYonetimSistemi.UI.MVC.Controllers
@@ -16,7 +16,9 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var result = _context.Projects.ToList();
+
+            return View(result);
         }
         public IActionResult Detail()
         {
@@ -39,7 +41,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddProject(Project project)
+        public IActionResult AddProject(ProjectEntity project)
         {
             if (ModelState.IsValid)
             {

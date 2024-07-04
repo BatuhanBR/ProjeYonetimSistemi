@@ -1,4 +1,4 @@
-﻿@model ProjeYonetimSistemi.UI.MVC.Models.Project
+﻿@model ProjeYonetimSistemi.UI.MVC.Entity.ProjectEntity
 
 @{
     ViewData["Title"] = "Proje Ekleme";
@@ -14,7 +14,7 @@
                 <div class="card-body">
                     <form asp-action="AddProject" method="post">
                         <div class="form-group">
-                            <label asp-for="ProjectName" class="control-label"></label>
+                            <label asp-for="ProjectName" class="control-label" name="ProjectName"></label>
                             <input asp-for="ProjectName" class="form-control" />
                             <span asp-validation-for="ProjectName" class="text-danger"></span>
                         </div>

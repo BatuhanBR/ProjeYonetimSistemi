@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using ProjeYonetimSistemi.UI.MVC.Controllers;
-using ProjeYonetimSistemi.UI.MVC.Models;
+using ProjeYonetimSistemi.UI.MVC.Entity;
 
 namespace ProjeYonetimSistemi.UI.MVC.Context
 {
@@ -12,7 +11,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Context
             : base(options)
         {
         }
-        public DbSet<Project> Projects { get; set; }
+        public DbSet<ProjectEntity> Projects { get; set; }
 
     }
 }

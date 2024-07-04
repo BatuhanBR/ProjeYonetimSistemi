@@ -1,4 +1,5 @@
-﻿<div class="content-wrapper" style="min-height: 1604.44px;">
+﻿@model IEnumerable<ProjeYonetimSistemi.UI.MVC.Entity.ProjectEntity>
+<div class="content-wrapper" style="min-height: 1604.44px;">
 
 	<section class="content-header">
 		<div class="container-fluid">
@@ -60,504 +61,67 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>
-								#
-							</td>
-							<td>
-								<a>
-									Kerem
-								</a>
-								<br>
-								<small>
-									Oluşturulma Tarihi 01.01.2019
-								</small>
-							</td>
-							<td>
-								<ul class="list-inline">
-									<li class="list-inline-item">
-										<img alt="Avatar" class="table-avatar" src="~/img/avatar5.png">
-									</li>
-								
-								</ul>
-							</td>
-							<td class="project_progress">
-								<div class="progress progress-sm">
-									<div class="progress-bar bg-green" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%">
+						 @foreach (var item in Model)
+						{
+							<tr>
+								<td>
+									#
+								</td>
+								<td>
+									<a>
+								@item.ProjectName
+									</a>
+									<br>
+									<small>
+										Oluşturulma Tarihi :@item.CreatedDate
+									</small>
+								</td>
+								<td>
+									<ul class="list-inline">
+										<li class="list-inline-item">
+											<img alt="Avatar" class="table-avatar" src="~/img/avatar5.png">
+										</li>
+
+									</ul>
+								</td>
+								<td class="project_progress">
+									<div class="progress progress-sm">
+										<div class="progress-bar bg-green" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%">
+										</div>
 									</div>
-								</div>
-								<small>
-									57% Tamamlandı
-								</small>
-							</td>
-							<td class="project-state">
-								<span class="badge badge-success">Bitirilmiş</span>
-							</td>
-							<td class="project-actions text-right">
-								<a class="btn btn-primary btn-sm" href="~/Project/Detail">
-									<i class="fas fa-folder">
-									</i>
-									Detay
-								</a>
-								<a class="btn btn-info btn-sm" href="~/Project/Update">
-									<i class="fas fa-pencil-alt">
-									</i>
-									Güncelle
-								</a>
-								<a class="btn btn-danger btn-sm" href="~/Project/Delete">
-									<i class="fas fa-trash">
-									</i>
-									Sil
-								</a>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								#
-							</td>
-							<td>
-								<a>
-									Göker
-								</a>
-								<br>
-								<small>
-									Oluşturulma Tarihi 01.01.2019
-								</small>
-							</td>
-							<td>
-								<ul class="list-inline">
-									<li class="list-inline-item">
-										<img alt="Avatar" class="table-avatar" src="~/img/avatar5.png">
-									</li>
-									<li class="list-inline-item">
-										<img alt="Avatar" class="table-avatar" src="~/img/avatar2.png">
-									</li>
-								</ul>
-							</td>
-							<td class="project_progress">
-								<div class="progress progress-sm">
-									<div class="progress-bar bg-green" role="progressbar" aria-valuenow="47" aria-valuemin="0" aria-valuemax="100" style="width: 47%">
-									</div>
-								</div>
-								<small>
-									47% Tamamlandı
-								</small>
-							</td>
-							<td class="project-state">
-								<span class="badge badge-success">Bitirilmiş</span>
-							</td>
-							<td class="project-actions text-right">
-								<a class="btn btn-primary btn-sm" href="~/Project/Detail">
-									<i class="fas fa-folder">
-									</i>
-									Detay
-								</a>
-								<a class="btn btn-info btn-sm" href="~/Project/Update">
-									<i class="fas fa-pencil-alt">
-									</i>
-									Güncelle
-								</a>
-								<a class="btn btn-danger btn-sm" href="~/Project/Delete">
-									<i class="fas fa-trash">
-									</i>
-									Sil
-								</a>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								#
-							</td>
-							<td>
-								<a>
-									Yiğit
-								</a>
-								<br>
-								<small>
-									Oluşturulma Tarihi 01.01.2019
-								</small>
-							</td>
-							<td>
-								<ul class="list-inline">
-									<li class="list-inline-item">
-										<img alt="Avatar" class="table-avatar" src="~/img/avatar2.png">
-									</li>
-									 
-									 
-								</ul>
-							</td>
-							<td class="project_progress">
-								<div class="progress progress-sm">
-									<div class="progress-bar bg-green" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 77%">
-									</div>
-								</div>
-								<small>
-									77% Tamamlandı
-								</small>
-							</td>
-							<td class="project-state">
-								<span class="badge badge-success">Bitirilmiş</span>
-							</td>
-							<td class="project-actions text-right">
-								<a class="btn btn-primary btn-sm" href="~/Project/Detail">
-									<i class="fas fa-folder">
-									</i>
-									Detay
-								</a>
-								<a class="btn btn-info btn-sm" href="~/Project/Update">
-									<i class="fas fa-pencil-alt">
-									</i>
-									Güncelle
-								</a>
-								<a class="btn btn-danger btn-sm" href="~/Project/Delete">
-									<i class="fas fa-trash">
-									</i>
-									Sil
-								</a>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								#
-							</td>
-							<td>
-								<a>
-									Server
-								</a>
-								<br>
-								<small>
-									Oluşturulma Tarihi 01.01.2019
-								</small>
-							</td>
-							<td>
-								<ul class="list-inline">
-									<li class="list-inline-item">
-										<img alt="Avatar" class="table-avatar" src="~/img/avatar5.png">
-									</li>
-									<li class="list-inline-item">
-										<img alt="Avatar" class="table-avatar" src="~/img/avatar2.png">
-									</li>
-									<li class="list-inline-item">
-										<img alt="Avatar" class="table-avatar" src="~/img/avatar3.png">
-									</li>
-									<li class="list-inline-item">
-										<img alt="Avatar" class="table-avatar" src="~/img/avatar4.png">
-									</li>
-								</ul>
-							</td>
-							<td class="project_progress">
-								<div class="progress progress-sm">
-									<div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-									</div>
-								</div>
-								<small>
-									60% Tamamlandı
-								</small>
-							</td>
-							<td class="project-state">
-								<span class="badge badge-success">Bitirilmiş</span>
-							</td>
-							<td class="project-actions text-right">
-								<a class="btn btn-primary btn-sm" href="~/Project/Detail">
-									<i class="fas fa-folder">
-									</i>
-									Detay
-								</a>
-								<a class="btn btn-info btn-sm" href="~/Project/Update">
-									<i class="fas fa-pencil-alt">
-									</i>
-									Güncelle
-								</a>
-								<a class="btn btn-danger btn-sm" href="~/Project/Delete">
-									<i class="fas fa-trash">
-									</i>
-									Sil
-								</a>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								#
-							</td>
-							<td>
-								<a>
-									Halil
-								</a>
-								<br>
-								<small>
-									Oluşturulma Tarihi 01.01.2019
-								</small>
-							</td>
-							<td>
-								<ul class="list-inline">
-									<li class="list-inline-item">
-										<img alt="Avatar" class="table-avatar" src="~/img/avatar5.png">
-									</li>
-									<li class="list-inline-item">
-										<img alt="Avatar" class="table-avatar" src="~/img/avatar4.png">
-									</li>
-									<li class="list-inline-item">
-										<img alt="Avatar" class="table-avatar" src="~/img/avatar5.png">
-									</li>
-								</ul>
-							</td>
-							<td class="project_progress">
-								<div class="progress progress-sm">
-									<div class="progress-bar bg-green" role="progressbar" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100" style="width: 12%">
-									</div>
-								</div>
-								<small>
-									12% Tamamlandı
-								</small>
-							</td>
-							<td class="project-state">
-								<span class="badge badge-success">Bitirilmiş</span>
-							</td>
-							<td class="project-actions text-right">
-								<a class="btn btn-primary btn-sm" href="~/Project/Detail">
-									<i class="fas fa-folder">
-									</i>
-									Detay
-								</a>
-								<a class="btn btn-info btn-sm" href="~/Project/Update">
-									<i class="fas fa-pencil-alt">
-									</i>
-									Güncelle
-								</a>
-								<a class="btn btn-danger btn-sm" href="~/Project/Delete">
-									<i class="fas fa-trash">
-									</i>
-									Sil
-								</a>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								#
-							</td>
-							<td>
-								<a>
-									Ufuk
-								</a>
-								<br>
-								<small>
-									Oluşturulma Tarihi 01.01.2019
-								</small>
-							</td>
-							<td>
-								<ul class="list-inline">
-									<li class="list-inline-item">
-										<img alt="Avatar" class="table-avatar" src="~/img/avatar5.png">
-									</li>
-									<li class="list-inline-item">
-										<img alt="Avatar" class="table-avatar" src="~/img/avatar2.png">
-									</li>
-									<li class="list-inline-item">
-										<img alt="Avatar" class="table-avatar" src="~/img/avatar3.png">
-									</li>
-									<li class="list-inline-item">
-										<img alt="Avatar" class="table-avatar" src="~/img/avatar4.png">
-									</li>
-								</ul>
-							</td>
-							<td class="project_progress">
-								<div class="progress progress-sm">
-									<div class="progress-bar bg-green" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" style="width: 35%">
-									</div>
-								</div>
-								<small>
-									35% Tamamlandı
-								</small>
-							</td>
-							<td class="project-state">
-								<span class="badge badge-success">Bitirilmiş</span>
-							</td>
-							<td class="project-actions text-right">
-								<a class="btn btn-primary btn-sm" href="~/Project/Detail">
-									<i class="fas fa-folder">
-									</i>
-									Detay
-								</a>
-								<a class="btn btn-info btn-sm" href="~/Project/Update">
-									<i class="fas fa-pencil-alt">
-									</i>
-									Güncelle
-								</a>
-								<a class="btn btn-danger btn-sm" href="~/Project/Delete">
-									<i class="fas fa-trash">
-									</i>
-									Sil
-								</a>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								#
-							</td>
-							<td>
-								<a>
-									Atiye
-								</a>
-								<br>
-								<small>
-									Oluşturulma Tarihi 01.01.2019
-								</small>
-							</td>
-							<td>
-								<ul class="list-inline">
-									<li class="list-inline-item">
-										<img alt="Avatar" class="table-avatar" src="~/img/avatar4.png">
-									</li>
-									<li class="list-inline-item">
-										<img alt="Avatar" class="table-avatar" src="~/img/avatar5.png">
-									</li>
-								</ul>
-							</td>
-							<td class="project_progress">
-								<div class="progress progress-sm">
-									<div class="progress-bar bg-green" role="progressbar" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100" style="width: 87%">
-									</div>
-								</div>
-								<small>
-									87% Tamamlandı
-								</small>
-							</td>
-							<td class="project-state">
-								<span class="badge badge-success">Bitirilmiş</span>
-							</td>
-							<td class="project-actions text-right">
-								<a class="btn btn-primary btn-sm" href="~/Project/Detail">
-									<i class="fas fa-folder">
-									</i>
-									Detay
-								</a>
-								<a class="btn btn-info btn-sm" href="~/Project/Update">
-									<i class="fas fa-pencil-alt">
-									</i>
-									Güncelle
-								</a>
-								<a class="btn btn-danger btn-sm" href="~/Project/Delete">
-									<i class="fas fa-trash">
-									</i>
-									Sil
-								</a>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								#
-							</td>
-							<td>
-								<a>
-									Sezai
-								</a>
-								<br>
-								<small>
-									Oluşturulma Tarihi 01.01.2019
-								</small>
-							</td>
-							<td>
-								<ul class="list-inline">
-									<li class="list-inline-item">
-										<img alt="Avatar" class="table-avatar" src="~/img/avatar5.png">
-									</li>
-									<li class="list-inline-item">
-										<img alt="Avatar" class="table-avatar" src="~/img/avatar3.png">
-									</li>
-									<li class="list-inline-item">
-										<img alt="Avatar" class="table-avatar" src="~/img/avatar4.png">
-									</li>
-								</ul>
-							</td>
-							<td class="project_progress">
-								<div class="progress progress-sm">
-									<div class="progress-bar bg-green" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 77%">
-									</div>
-								</div>
-								<small>
-									77% Tamamlandı
-								</small>
-							</td>
-							<td class="project-state">
-								<span class="badge badge-success">Bitirilmiş</span>
-							</td>
-							<td class="project-actions text-right">
-								<a class="btn btn-primary btn-sm" href="~/Project/Detail">
-									<i class="fas fa-folder">
-									</i>
-									Detay
-								</a>
-								<a class="btn btn-info btn-sm" href="~/Project/Update">
-									<i class="fas fa-pencil-alt">
-									</i>
-									Güncelle
-								</a>
-								<a class="btn btn-danger btn-sm" href="~/Project/Delete">
-									<i class="fas fa-trash">
-									</i>
-									Sil
-								</a>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								#
-							</td>
-							<td>
-								<a>
-									John
-								</a>
-								<br>
-								<small>
-									Oluşturulma Tarihi 01.01.2019
-								</small>
-							</td>
-							<td>
-								<ul class="list-inline">
-									<li class="list-inline-item">
-										<img alt="Avatar" class="table-avatar" src="~/img/avatar5.png">
-									</li>
-									<li class="list-inline-item">
-										<img alt="Avatar" class="table-avatar" src="~/img/avatar3.png">
-									</li>
-									<li class="list-inline-item">
-										<img alt="Avatar" class="table-avatar" src="~/img/avatar4.png">
-									</li>
-									<li class="list-inline-item">
-										<img alt="Avatar" class="table-avatar" src="~/img/avatar5.png">
-									</li>
-								</ul>
-							</td>
-							<td class="project_progress">
-								<div class="progress progress-sm">
-									<div class="progress-bar bg-green" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 77%">
-									</div>
-								</div>
-								<small>
-									77% Tamamlandı
-								</small>
-							</td>
-							<td class="project-state">
-								<span class="badge badge-success">Bitirilmiş</span>
-							</td>
-							<td class="project-actions text-right">
-								<a class="btn btn-primary btn-sm" href="~/Project/Detail">
-									<i class="fas fa-folder">
-									</i>
-									Detay
-								</a>
-								<a class="btn btn-info btn-sm" href="~/Project/Update">
-									<i class="fas fa-pencil-alt">
-									</i>
-									Güncelle
-								</a>
-								<a class="btn btn-danger btn-sm" href="~/Project/Delete">
-									<i class="fas fa-trash">
-									</i>
-									Sil
-								</a>
-							</td>
-						</tr>
+									<small>
+										57% Tamamlandı
+									</small>
+								</td>
+								<td class="project-state">
+									<span class="badge badge-success">Bitirilmiş</span>
+								</td>
+								<td class="project-actions text-right">
+									<a class="btn btn-primary btn-sm" href="~/Project/Detail">
+										<i class="fas fa-folder">
+										</i>
+										Detay
+									</a>
+									<a class="btn btn-info btn-sm" href="~/Project/Update">
+										<i class="fas fa-pencil-alt">
+										</i>
+										Güncelle
+									</a>
+									<a class="btn btn-danger btn-sm" href="~/Project/Delete">
+										<i class="fas fa-trash">
+										</i>
+										Sil
+									</a>
+								</td>
+							</tr>
+
+
+						}
+
+						
+						
+						
+						
 					</tbody>
 				</table>
 			</div>
