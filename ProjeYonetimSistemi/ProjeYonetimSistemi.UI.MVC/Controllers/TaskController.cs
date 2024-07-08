@@ -33,6 +33,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
+                task.CreatedDate = DateTime.Now;
                 _context.Add(task);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

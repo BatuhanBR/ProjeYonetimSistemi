@@ -1,48 +1,109 @@
 ﻿@model IEnumerable<ProjeYonetimSistemi.UI.MVC.Entity.TaskEntity>
 
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
+<div class="content-wrapper" style="min-height: 1604.44px;">
+
+    <section class="content-header">
         <div class="container-fluid">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        <i class="ion ion-clipboard mr-1"></i>
-                        Görev Listesi
-                    </h3>
-                    <a href="@Url.Action("Create", "Task")" class="btn btn-primary float-left"><i class="fas fa-plus" style="margin-left: 10px;"></i> Görev Ekle</a>
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Görev Yönetimi</h1>
                 </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <ul class="todo-list" data-widget="todo-list">
-                        @foreach (var item in Model)
-                        {
-                            <li>
-                                <!-- drag handle -->
-                                <span class="handle">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </span>
-                                <!-- checkbox -->
-                                <div class="icheck-primary d-inline ml-2">
-                                    <input type="checkbox" value="" id="todoCheck@item.Id">
-                                    <label for="todoCheck@item.Id"></label>
-                                </div>
-                                <!-- todo text -->
-                                <span class="text">@item.Name</span>
-                                <!-- Emphasis label -->
-                                <small class="badge badge-danger"><i class="far fa-clock"></i> @item.DueDate.ToShortDateString()</small>
-                                <!-- General tools such as edit or delete-->
-                                <div class="tools">
-                                    <i class="fas fa-edit"></i>
-                                    <i class="fas fa-trash-o"></i>
-                                </div>
-                            </li>
-                        }
-                    </ul>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="">Ana Sayfa</a></li>
+                        <li class="breadcrumb-item active">Görevler</li>
+                    </ol>
                 </div>
-                <!-- /.card-body -->
             </div>
         </div>
-    </div>
+    </section>
+
+    <section class="content">
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Görevler</h3>
+                <a href="@Url.Action("Create", "Task")" class="btn btn-primary float-left" style="margin-left: 5px;">
+                    <i class="fas fa-plus"></i> Görev Ekle
+                </a>
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- /.card-header -->
+
+            <div class="card-body p-0">
+                <table class="table table-striped projects">
+                    <thead>
+                        <tr>
+                            <th style="width: 1%">#</th>
+                            <th style="width: 15%">Görev Adı</th>
+                            <th style="width: 25%">Açıklama</th>
+                            <th style="width: 15%">Proje Adı</th>
+                            <th style="width: 10%">İlerleme</th>
+                            <th style="width: 10%">Durum</th>
+                            <th style="width: 10%">Bitiş Tarihi</th>
+                            <th style="width: 10%">Oluşturulma Tarihi</th>
+                            <th style="width: 9%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>#</td>
+                                <td>@item.TaskName</td>
+                                <td>@item.Description</td>
+                                <td></td>
+                                <td>
+                                    <div class="progress progress-xs">
+                                        <div class="progress-bar" style="width: @item.Progress%" aria-valuemin="0" aria-valuemax="100">@item.Progress%</div>
+                                    </div>
+                                    <small>@item.Progress%</small>
+                                </td>
+                                <td>
+                                    @if (item.Status == "Başlanmadı")
+                                    {
+                                        <span class="badge badge-warning">@item.Status</span>
+                                    }
+                                    else if (item.Status == "Devam Ediyor")
+                                    {
+                                        <span class="badge badge-info">@item.Status</span>
+                                    }
+                                    else if (item.Status == "Bitirildi")
+                                    {
+                                        <span class="badge badge-success">@item.Status</span>
+                                    }
+                                </td>
+                                <td>@item.DueDate.ToShortDateString()</td>
+                                <td>@item.CreatedDate.ToShortDateString()</td>
+                                <td class="project-actions text-right">
+                                    <a class="btn btn-primary btn-sm" href="~/Project/Detail">
+                                        <i class="fas fa-folder"></i> Detay
+                                    </a>
+                                    <a class="btn btn-info btn-sm" href="~/Project/Update">
+                                        <i class="fas fa-pencil-alt"></i> Güncelle
+                                    </a>
+                                    <a class="btn btn-danger btn-sm" href="~/Project/Delete">
+                                        <i class="fas fa-trash"></i> Sil
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+
 </div>
