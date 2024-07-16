@@ -1,7 +1,8 @@
-﻿@model ProjeYonetimSistemi.UI.MVC.Entity.TaskEntity
+﻿@model ProjeYonetimSistemi.UI.MVC.Dto.Task.addTaskDto
 
 @{
     ViewData["Title"] = "Görev Ekle";
+    var projects = ViewBag.Projects as List<ProjeYonetimSistemi.UI.MVC.Entity.ProjectEntity>;
 }
 
 <div class="container">
@@ -26,23 +27,11 @@
 
                         <!-- ComboBox -->
                         <div class="form-group">
-                            <label for="ComboBoxExample" class="control-label">ComboBox Örneği</label>
-                            <select id="ComboBoxExample" name="ComboBoxExample" class="form-control">
-                                <option value="Option1">Seçenek 1</option>
-                                <option value="Option2">Seçenek 2</option>
-                                <option value="Option3">Seçenek 3</option>
+                            <label for="ProjectId" class="control-label">Proje Seç</label>
+                            <select id="ProjectId" name="ProjectId" class="form-control" asp-for="ProjectId" asp-items="@(new SelectList(projects, "Id", "ProjectName"))">
+                                <option value="">Proje Seç</option>
                             </select>
-                        </div>
-
-                        <!-- ListBox -->
-                        <div class="form-group">
-                            <label for="ListBoxExample" class="control-label">ListBox Örneği</label>
-                            <select id="ListBoxExample" name="ListBoxExample" class="form-control" multiple="multiple">
-                                <option value="Option1">Seçenek 1</option>
-                                <option value="Option2">Seçenek 2</option>
-                                <option value="Option3">Seçenek 3</option>
-                                <option value="Option4">Seçenek 4</option>
-                            </select>
+                            <span asp-validation-for="ProjectId" class="text-danger"></span>
                         </div>
 
                         <div class="form-group">

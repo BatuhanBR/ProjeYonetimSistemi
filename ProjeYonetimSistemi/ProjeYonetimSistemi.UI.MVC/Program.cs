@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ProjeYonetimSistemi.UI.MVC.Context;
 using ProjeYonetimSistemi.UI.MVC.Middleware;
-
+using AutoMapper;
+using ProjeYonetimSistemi.UI.MVC;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +20,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddIdentityCore<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
-
+// AutoMapper konfigurasyonunu ekleyin
+builder.Services.AddAutoMapper(typeof(MapperProfile).Assembly);
 
 // Cookie bazlý kimlik doðrulama ayarlarý
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -27,7 +29,6 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     {
         options.LoginPath = "/Account/Login"; // Kullanýcý giriþ yapmadan önce otomatik olarak yönlendirilecek sayfa
     });
-
 
 // EmailSender servisini DI konteynerýna ekleyin
 builder.Services.AddSingleton(new EmailSender(

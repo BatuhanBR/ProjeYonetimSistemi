@@ -90,9 +90,12 @@
                                     <a class="btn btn-info btn-sm" href="~/Project/Update">
                                         <i class="fas fa-pencil-alt"></i> Güncelle
                                     </a>
-                                    <a class="btn btn-danger btn-sm" href="~/Project/Delete">
-                                        <i class="fas fa-trash"></i> Sil
-                                    </a>
+                                    <form asp-action="Delete" method="post" style="display:inline;">
+                                        <input type="hidden" name="id" value="@item.Id" />
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash"></i> Sil
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         }
