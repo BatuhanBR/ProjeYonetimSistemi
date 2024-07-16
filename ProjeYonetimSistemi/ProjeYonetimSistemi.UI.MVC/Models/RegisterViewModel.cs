@@ -17,5 +17,14 @@ namespace ProjeYonetimSistemi.UI.MVC.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string? ConfirmPassword { get; set; }
+
+        [Required(ErrorMessage = "İsim alanı zorunludur.")]
+        [Display(Name = "İsim")]
+        public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "Soyisim alanı zorunludur.")]
+        [Display(Name = "Soyisim")]
+        public string LastName { get; set; }
     }
 }
+

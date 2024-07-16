@@ -4,34 +4,36 @@
     ViewData["Title"] = "Proje Ekleme";
 }
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Proje Ekleme</h3>
-                </div>
-                <div class="card-body">
-                    <form asp-action="AddProject" method="post">
-                        <div class="form-group">
-                            <label asp-for="ProjectName" class="control-label"></label>
-                            <input asp-for="ProjectName" class="form-control" />
-                            <span asp-validation-for="ProjectName" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="TeamMembers" class="control-label"></label>
-                            <input asp-for="TeamMembers" class="form-control" />
-                            <span asp-validation-for="TeamMembers" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="Description" class="control-label"></label>
-                            <textarea asp-for="Description" class="form-control"></textarea>
-                            <span asp-validation-for="Description" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary" data-val="true" data-val-required="Lütfen tüm alanları doldurunuz.">Ekle</button>
-                        </div>
-                    </form>
+<div class="content-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Proje Ekleme</h3>
+                    </div>
+                    <div class="card-body">
+                        <form asp-action="AddProject" method="post">
+                            <div class="form-group">
+                                <label asp-for="ProjectName" class="control-label">Proje İsmi</label>
+                                <input asp-for="ProjectName" class="form-control" />
+                                <span asp-validation-for="ProjectName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="TeamMembers" class="control-label">Takım Üyeleri</label>
+                                <input asp-for="TeamMembers" class="form-control" />
+                                <span asp-validation-for="TeamMembers" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Description" class="control-label">Açıklama</label>
+                                <textarea asp-for="Description" class="form-control"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary" data-val="true" data-val-required="Lütfen tüm alanları doldurunuz.">Ekle</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
