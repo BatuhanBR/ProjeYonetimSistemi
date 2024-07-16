@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿#region NAMESPACES                          
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ProjeYonetimSistemi.UI.MVC.Models;
 using System.Diagnostics;
+#endregion
 
 namespace ProjeYonetimSistemi.UI.MVC.Controllers
 {

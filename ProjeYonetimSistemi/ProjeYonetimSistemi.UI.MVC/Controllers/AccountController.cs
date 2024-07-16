@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿#region NAMESPACES
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ProjeYonetimSistemi.UI.MVC.Models;
 using System.Text.Encodings.Web;
-
+#endregion
 namespace ProjeYonetimSistemi.UI.MVC.Controllers
 {
     public class AccountController : Controller

@@ -1,3 +1,4 @@
+#region NAMESPACES
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -5,6 +6,7 @@ using ProjeYonetimSistemi.UI.MVC.Context;
 using ProjeYonetimSistemi.UI.MVC.Middleware;
 using AutoMapper;
 using ProjeYonetimSistemi.UI.MVC;
+#endregion
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +20,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 // Identity ve Entity Framework konfigürasyonlarý
 builder.Services.AddIdentityCore<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddSignInManager<SignInManager<IdentityUser>>();
 
 // AutoMapper konfigurasyonunu ekleyin
 builder.Services.AddAutoMapper(typeof(MapperProfile).Assembly);
@@ -40,6 +43,15 @@ builder.Services.AddSingleton(new EmailSender(
 
 // MVC için gerekli servisleri ekleyin
 builder.Services.AddControllersWithViews();
+
+// Authorization politikalarýný ekleme
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("RequireAdminRole", policy =>
+    {
+        policy.RequireRole("admin");
+    });
+});
 
 var app = builder.Build();
 
