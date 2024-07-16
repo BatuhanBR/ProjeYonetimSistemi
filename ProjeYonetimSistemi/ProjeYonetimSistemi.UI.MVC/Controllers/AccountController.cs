@@ -31,14 +31,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser
-                {
-                    UserName = model.Email,
-                    Email = model.Email,
-                    FirstName = model.FirstName,
-                    LastName = model.LastName
-                };
-
+                var user = new IdentityUser { UserName = model.Email, Email = model.Email };
                 var result = await _userManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
@@ -52,7 +45,6 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
                     ModelState.AddModelError("", error.Description);
                 }
             }
-
 
             return View(model);
         }
