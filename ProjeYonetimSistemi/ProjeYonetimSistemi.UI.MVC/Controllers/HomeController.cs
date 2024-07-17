@@ -9,8 +9,9 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
 {
     public class HomeController : Controller
     {
+        #region FIELDS
         private readonly ILogger<HomeController> _logger;
-
+        #endregion
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
