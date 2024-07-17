@@ -9,17 +9,22 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
 {
     public class AccountController : Controller
     {
+        #region FIELDS
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly EmailSender _emailSender;
+        #endregion
 
+        #region CTOR
         public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, EmailSender emailSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
         }
+        #endregion
 
+        #region ACTIONRESULTS
         [HttpGet]
         public IActionResult Register()
         {
@@ -161,3 +166,4 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
         }
     }
 }
+#endregion

@@ -22,7 +22,7 @@
 
         <div class="card">
             <div class="card-header">
-              
+
                 <a href="@Url.Action("Create", "Task")" class="btn btn-primary float-left" style="margin-left: 5px;">
                     <i class="fas fa-plus"></i> Görev Ekle
                 </a>
@@ -61,7 +61,7 @@
                         {
                             i = i + 1;
                             <tr>
-                                <td> @i <td>
+                                <td> @i </td>
                                 <td>@item.TaskName</td>
                                 <td>@item.Description</td>
                                 <td></td>
@@ -88,19 +88,41 @@
                                 <td>@item.DueDate.ToShortDateString()</td>
                                 <td>@item.CreatedDate.ToShortDateString()</td>
                                 <td class="project-actions d-flex">
-                                    <a class="btn btn-primary btn-sm" style="margin:6px" href="~/Project/Detail/@item.Id">
+                                    <a class="btn btn-primary btn-sm" style="margin:6px" href="~/Task/Detail/@item.Id">
                                         <i class="fas fa-folder"></i>
                                     </a>
-                                    <a class="btn btn-info btn-sm" style="margin:6px" href="~/Project/Update">
+                                    <a class="btn btn-info btn-sm" style="margin:6px" href="~/Task/Update">
                                         <i class="fas fa-pencil-alt"></i>
                                     </a>
 
+                                    <!-- Modal Trigger Button -->
+                                    <button type="button" class="btn btn-danger btn-sm" style="margin:6px;" data-toggle="modal" data-target="#deleteModal-@item.Id">
+                                        <i class="fas fa-trash"></i> 
+                                    </button>
 
-                                    <a class="btn btn-danger btn-sm" style="margin:6px" href="~/Project/Delete/@item.Id"> <i class="fas fa-trash"></i></a>
-
-                          
-                                        
-                                  
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="deleteModal-@item.Id" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel-@item.Id" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteModalLabel-@item.Id">Görev Silme</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Bu görevi silmek istediğinize emin misiniz?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                                                    <form asp-action="Delete" asp-controller="Task" method="post">
+                                                        <input type="hidden" name="id" value="@item.Id" />
+                                                        <button type="submit" class="btn btn-danger">Sil</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         }

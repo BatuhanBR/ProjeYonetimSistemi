@@ -12,10 +12,15 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
         #region FIELDS
         private readonly ILogger<HomeController> _logger;
         #endregion
+
+        #region CTOR
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
+        #endregion
+
+        #region ActionResults
 
         public IActionResult Index()
         {
@@ -34,3 +39,5 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
         }
     }
 }
+#endregion
+

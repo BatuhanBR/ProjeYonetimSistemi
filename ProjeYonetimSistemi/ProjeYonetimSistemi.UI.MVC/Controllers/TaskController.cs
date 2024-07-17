@@ -26,7 +26,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
         }
         #endregion
 
-        #region ACTIN REULSTS
+        #region ACTION RESULTS
         public async Task<IActionResult> Index()
         {
             var tasks = await _context.Tasks.ToListAsync();
@@ -47,10 +47,10 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var taskEntity = _mapper.Map<TaskEntity>(model);
+                var taskEntity = _mapper.Map<TaskEntity>(task);
                 // taskEntity nesnesini veritabanına kaydet
-                // _context.Tasks.Add(taskEntity);
-                // _context.SaveChanges();
+                _context.Tasks.Add(taskEntity);
+                _context.SaveChanges();
 
                 return RedirectToAction("Index");
             }
@@ -60,22 +60,28 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
             var task = await _context.Tasks.FindAsync(id);
-            if (task != null)
+            if (task == null)
             {
-                _context.Tasks.Remove(task);
-                await _context.SaveChangesAsync();
+                return NotFound();
             }
+
+            _context.Tasks.Remove(task);
+            await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> Detail(int id)
+        public IActionResult Detail(int id)
         {
-            var tasks = await _context.Tasks.FirstOrDefaultAsync(x=>x.Id==id);
-            return View(tasks);
+            var task = _context.Tasks.FirstOrDefault(t => t.Id == id);
+            if (task == null)
+            {
+                return NotFound(); 
+            }
+            return View(task);
         }
         #endregion
 

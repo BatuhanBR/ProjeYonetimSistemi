@@ -5,8 +5,8 @@
 }
 
 <div class="content-wrapper">
-    <div class="container">
-        <div class="row">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
@@ -29,7 +29,8 @@
                                 <textarea asp-for="Description" class="form-control"></textarea>
                                 <span asp-validation-for="Description" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group text-right">
+                                <!-- Ekle butonunu sağ tarafa taşımak için 'text-right' sınıfını ekledik -->
                                 <button type="submit" class="btn btn-primary" data-val="true" data-val-required="Lütfen tüm alanları doldurunuz.">Ekle</button>
                             </div>
                         </form>

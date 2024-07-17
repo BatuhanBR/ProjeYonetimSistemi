@@ -1,14 +1,18 @@
-﻿using MailKit.Net.Smtp;
+﻿#region NAMESPACES
+using MailKit.Net.Smtp;
 using MimeKit;
 using System.Threading.Tasks;
-
+#endregion
 public class EmailSender
 {
+    #region FIELDS
     private readonly string _smtpServer;
     private readonly int _smtpPort;
     private readonly string _smtpUser;
     private readonly string _smtpPass;
+    #endregion
 
+    #region CTOR
     public EmailSender(string smtpServer, int smtpPort, string smtpUser, string smtpPass)
     {
         _smtpServer = smtpServer;
@@ -39,3 +43,4 @@ public class EmailSender
         }
     }
 }
+#endregion
