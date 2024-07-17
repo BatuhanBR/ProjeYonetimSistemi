@@ -245,7 +245,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Projects");
+                    b.ToTable("Projects", (string)null);
                 });
 
             modelBuilder.Entity("ProjeYonetimSistemi.UI.MVC.Entity.TaskEntity", b =>
@@ -281,7 +281,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Migrations
 
                     b.HasIndex("ProjectId");
 
-                    b.ToTable("Tasks");
+                    b.ToTable("Tasks", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -22,7 +22,7 @@
 
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Görevler</h3>
+              
                 <a href="@Url.Action("Create", "Task")" class="btn btn-primary float-left" style="margin-left: 5px;">
                     <i class="fas fa-plus"></i> Görev Ekle
                 </a>
@@ -54,10 +54,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @{
+                            int i = 0;
+                        }
                         @foreach (var item in Model)
                         {
+                            i = i + 1;
                             <tr>
-                                <td>#</td>
+                                <td> @i <td>
                                 <td>@item.TaskName</td>
                                 <td>@item.Description</td>
                                 <td></td>
@@ -84,18 +88,19 @@
                                 <td>@item.DueDate.ToShortDateString()</td>
                                 <td>@item.CreatedDate.ToShortDateString()</td>
                                 <td class="project-actions d-flex">
-                                    <a class="btn btn-primary btn-sm" href="~/Project/Detail">
+                                    <a class="btn btn-primary btn-sm" style="margin:6px" href="~/Project/Detail/@item.Id">
                                         <i class="fas fa-folder"></i>
                                     </a>
-                                    <a class="btn btn-info btn-sm" href="~/Project/Update">
+                                    <a class="btn btn-info btn-sm" style="margin:6px" href="~/Project/Update">
                                         <i class="fas fa-pencil-alt"></i>
                                     </a>
-                                    <form asp-action="Delete" method="post" style="display:inline;">
-                                        <input type="hidden" name="id" value="@item.Id" />
-                                        <button type="submit" class="btn btn-danger btn-sm">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </form>
+
+
+                                    <a class="btn btn-danger btn-sm" style="margin:6px" href="~/Project/Delete/@item.Id"> <i class="fas fa-trash"></i></a>
+
+                          
+                                        
+                                  
                                 </td>
                             </tr>
                         }

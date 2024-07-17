@@ -71,6 +71,12 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> Detail(int id)
+        {
+            var tasks = await _context.Tasks.FirstOrDefaultAsync(x=>x.Id==id);
+            return View(tasks);
+        }
         #endregion
 
     }

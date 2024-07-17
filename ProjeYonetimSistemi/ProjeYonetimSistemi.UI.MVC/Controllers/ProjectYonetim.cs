@@ -1,18 +1,27 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿#region NAMESPACES
+using Microsoft.AspNetCore.Mvc;
 using ProjeYonetimSistemi.UI.MVC.Context;
 using ProjeYonetimSistemi.UI.MVC.Entity;
+
+#endregion
 
 
 namespace ProjeYonetimSistemi.UI.MVC.Controllers
 {
     public class ProjectController : Controller
     {
+        #region FIELDS
         private readonly ApplicationDbContext _context;
 
+        #endregion
+
+        #region CTOR
         public ProjectController(ApplicationDbContext context)
         {
             _context = context;
         }
+        #endregion
+
 
         public IActionResult Index()
         {

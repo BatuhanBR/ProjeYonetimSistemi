@@ -21,7 +21,7 @@
 
 		<div class="card">
 			<div class="card-header">
-				<h3 class="card-title">Projeler</h3>
+	 
 				<a class="btn btn-success float-left" href="~/Project/AddProject" style="margin-left: 20px;">
 					<i class="fas fa-plus"></i> Yeni Proje Ekle
 				</a>
@@ -61,11 +61,15 @@
 						</tr>
 					</thead>
 					<tbody>
+						@{
+							int i = 0;
+						}
 						 @foreach (var item in Model)
 						{
+							i = i + 1;
 							<tr>
 								<td>
-									#
+									@i
 								</td>
 								<td>
 									<a>

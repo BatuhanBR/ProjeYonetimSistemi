@@ -5,47 +5,49 @@
     var projects = ViewBag.Projects as List<ProjeYonetimSistemi.UI.MVC.Entity.ProjectEntity>;
 }
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Görev Ekleme</h3>
-                </div>
-                <div class="card-body">
-                    <form asp-action="Create" method="post">
-                        <div class="form-group">
-                            <label asp-for="TaskName" class="control-label"></label>
-                            <input asp-for="TaskName" class="form-control" />
-                            <span asp-validation-for="TaskName" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="Description" class="control-label"></label>
-                            <input asp-for="Description" class="form-control" />
-                            <span asp-validation-for="Description" class="text-danger"></span>
-                        </div>
+<div class="content-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Görev Ekleme</h3>
+                    </div>
+                    <div class="card-body">
+                        <form asp-action="Create" method="post">
+                            <div class="form-group">
+                                <label asp-for="TaskName" class="control-label">Görev Adı</label>
+                                <input asp-for="TaskName" class="form-control" />
+                                <span asp-validation-for="TaskName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Description" class="control-label">Açıklama</label>
+                                <input asp-for="Description" class="form-control" />
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
 
-                        <!-- ComboBox -->
-                        <div class="form-group">
-                            <label for="ProjectId" class="control-label">Proje Seç</label>
-                            <select id="ProjectId" name="ProjectId" class="form-control" asp-for="ProjectId" asp-items="@(new SelectList(projects, "Id", "ProjectName"))">
-                                <option value="">Proje Seç</option>
-                            </select>
-                            <span asp-validation-for="ProjectId" class="text-danger"></span>
-                        </div>
+                            <!-- ComboBox -->
+                            <div class="form-group">
+                                <label for="ProjectId" class="control-label">Proje Seç</label>
+                                <select id="ProjectId" name="ProjectId" class="form-control" asp-for="ProjectId" asp-items="@(new SelectList(projects, "Id", "ProjectName"))">
+                                    <option value="">Proje Seç</option>
+                                </select>
+                                <span asp-validation-for="ProjectId" class="text-danger"></span>
+                            </div>
 
-                        <div class="form-group">
-                            <label asp-for="DueDate" class="control-label"></label>
-                            <input asp-for="DueDate" class="form-control" />
-                            <span asp-validation-for="DueDate" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" value="Görev Ekle" class="btn btn-primary" />
-                        </div>
-                    </form>
+                            <div class="form-group">
+                                <label asp-for="DueDate" class="control-label">Bitiş Tarihi</label>
+                                <input asp-for="DueDate" class="form-control" />
+                                <span asp-validation-for="DueDate" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Görev Ekle" class="btn btn-primary" />
+                            </div>
+                        </form>
 
-                    <div>
-                        <a asp-action="Index">Geri Dön</a>
+                        <div>
+                            <a asp-action="Index" class="btn btn-secondary">Geri Dön</a>
+                        </div>
                     </div>
                 </div>
             </div>
