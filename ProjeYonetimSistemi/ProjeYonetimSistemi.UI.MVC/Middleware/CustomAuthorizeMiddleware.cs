@@ -14,7 +14,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Middleware
         public async Task InvokeAsync(HttpContext context, IAuthorizationService authorizationService)
         {
             // Özel yetkilendirme için örnek kontrol (örneğin: admin rolü)
-            if (context.Request.Path == "/Account/Login")
+            if (context.Request.Path.StartsWithSegments("/admin"))
             {
                 var authorizeResult = await authorizationService.AuthorizeAsync(context.User, null, "RequireAdminRole");
 

@@ -68,6 +68,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
