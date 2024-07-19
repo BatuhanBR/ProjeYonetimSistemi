@@ -6,6 +6,7 @@ using ProjeYonetimSistemi.UI.MVC.Context;
 using ProjeYonetimSistemi.UI.MVC.Middleware;
 using AutoMapper;
 using ProjeYonetimSistemi.UI.MVC;
+using ProjeYonetimSistemi.UI.MVC.Models;
 #endregion
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,19 +20,20 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
 // Identity ve Entity Framework konfigürasyonlarý
-builder.Services.AddIdentityCore<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
-    .AddSignInManager<SignInManager<IdentityUser>>();
+    .AddDefaultTokenProviders();
 
 // AutoMapper konfigurasyonunu ekleyin
 builder.Services.AddAutoMapper(typeof(MapperProfile).Assembly);
 
-// Cookie bazlý kimlik doðrulama ayarlarý
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
-    {
-        options.LoginPath = "/Account/Login"; // Kullanýcý giriþ yapmadan önce otomatik olarak yönlendirilecek sayfa
-    });
+// Cookie bazlý kimlik doðrulama ayarlarý (Identity kütüphanesi otomatik olarak ayarlar)
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Account/Login"; // Kullanýcý giriþ yapmadan önce otomatik olarak yönlendirilecek sayfa
+    options.LogoutPath = "/Account/Logout";
+    options.AccessDeniedPath = "/Account/AccessDenied";
+});
 
 // EmailSender servisini DI konteynerýna ekleyin
 builder.Services.AddSingleton(new EmailSender(

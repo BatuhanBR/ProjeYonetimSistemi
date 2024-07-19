@@ -10,17 +10,16 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
     public class AccountController : Controller
     {
         #region FIELDS
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly EmailSender _emailSender;
         #endregion
 
         #region CTOR
-        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, EmailSender emailSender)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _emailSender = emailSender;
         }
         #endregion
 
@@ -36,7 +35,13 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName
+                };
                 var result = await _userManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
@@ -53,6 +58,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
 
             return View(model);
         }
+
 
         [HttpGet]
         [AllowAnonymous]
