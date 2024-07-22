@@ -16,6 +16,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Context
 
         public DbSet<ProjectEntity> Projects { get; set; }
         public DbSet<TaskEntity> Tasks { get; set; }
+       
     }
 
 

@@ -13,6 +13,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Entity
         public string? Status { get; set; } // Projenin ne durumda olduğu
         public int Progress { get; set; } // Progress Bar
 
+
         [Required]
         public int ProjectId { get; set; }
         public ProjectEntity Project { get; set; }
