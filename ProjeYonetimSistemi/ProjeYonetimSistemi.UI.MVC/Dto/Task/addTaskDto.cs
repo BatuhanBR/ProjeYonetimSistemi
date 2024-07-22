@@ -12,6 +12,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Dto.Task
         public DateTime CreatedDate { get; set; } // Eklenme tarihi
         public string? Status { get; set; } // Projenin ne durumda olduğu
         public int ProjectId { get; set; }
-        
+        public string TeamMembers { get; set; }
+
     }
 }

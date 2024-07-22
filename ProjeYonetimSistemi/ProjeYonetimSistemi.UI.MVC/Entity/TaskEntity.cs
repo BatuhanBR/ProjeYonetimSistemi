@@ -12,6 +12,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Entity
         public DateTime CreatedDate { get; set; } // Eklenme tarihi
         public string? Status { get; set; } // Projenin ne durumda olduğu
         public int Progress { get; set; } // Progress Bar
+    
 
 
         [Required]

@@ -1,7 +1,7 @@
-﻿@model ProjeYonetimSistemi.UI.MVC.Entity.ProjectEntity
+﻿@model ProjeYonetimSistemi.UI.MVC.Dto.Task.addTaskDto
 
 @{
-    ViewData["Title"] = "Görev Ekleme";
+    ViewBag.Title = "Create Task";
 }
 
 <div class="content-wrapper">
@@ -13,11 +13,11 @@
                         <h1>Proje Ekle</h1>
                     </div>
                     <div class="card-body">
-                        <form asp-action="AddProject" method="post">
+                        <form asp-action="Create" method="post">
                             <div class="form-group">
-                                <label asp-for="ProjectName" class="control-label">Görev İsmi</label>
-                                <input asp-for="ProjectName" class="form-control" />
-                                <span asp-validation-for="ProjectName" class="text-danger"></span>
+                                <label asp-for="TaskName" class="control-label">Görev İsmi</label>
+                                <input asp-for="TaskName" class="form-control" />
+                                <span asp-validation-for="TaskName" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="TeamMembers" class="control-label">Takım Üyeleri</label>
