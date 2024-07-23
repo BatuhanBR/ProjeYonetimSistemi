@@ -21,11 +21,8 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
         public async Task<IActionResult> Index()
         {
             var users = _userManager.Users.ToList(); // Kullanıcıları çek
-            var model = new CreateUserViewModel
-            {
-                Users = users
-            };
-            return View(model);
+            ViewBag.Users = users; // Kullanıcıları ViewBag ile geçiyoruz
+            return View();
         }
         public IActionResult Detail()
         {
@@ -45,9 +42,9 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
 
             var model = new CreateUserViewModel
             {
-                
                 FirstName = user.FirstName,
-                LastName = user.LastName
+                LastName = user.LastName,
+                Email = user.Email // Email eklemeyi unutmayın
             };
             return View(model);
         }
@@ -78,15 +75,12 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
 
         public IActionResult Create()
         {
+            // Mevcut kullanıcıları listele
             var users = _userManager.Users.ToList();
-            var model = new CreateUserViewModel
-            {
-                Users = users
-            };
-            return View(model);
+            ViewBag.Users = users; // Kullanıcıları ViewBag ile geçiyoruz
+            return View();
         }
 
-        // POST: /User/Create
         [HttpPost]
         public async Task<IActionResult> Create(CreateUserViewModel model)
         {
@@ -97,10 +91,10 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     Email = model.Email,
-                    UserName = model.Email // Kullanıcı adı olarak e-posta kullanıyoruz
+                    UserName = model.Email
                 };
 
-                var result = await _userManager.CreateAsync(user, model.Password); // Şifreyi ekliyoruz
+                var result = await _userManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
                 {
@@ -115,12 +109,10 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
                 }
             }
 
-            // Model geçersizse, mevcut kullanıcıları ve model bilgilerini yeniden yükleyin
-            var users = _userManager.Users.ToList();
-            model.Users = users;
+            // Model geçersizse, kullanıcı listesini yeniden yükleyin
+            ViewBag.Users = _userManager.Users.ToList();
             return View(model);
         }
-
         #endregion
 
 

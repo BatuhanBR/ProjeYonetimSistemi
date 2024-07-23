@@ -1,56 +1,64 @@
 ﻿@model ProjeYonetimSistemi.UI.MVC.Entity.TaskEntity
 
-@{
-
+<div class="content-wrapper">
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6 text-right">
+                <div class="col-sm-6">
                     <h1>Görev Ekleme</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="">Ana Sayfa</a></li>
-                        <li class="breadcrumb-item active">Projeler</li>
+                        <li class="breadcrumb-item"><a href="#">Ana Sayfa</a></li>
+                        <li class="breadcrumb-item active">Görev Detay</li>
                     </ol>
                 </div>
             </div>
         </div>
     </section>
 
-}
-<div class="content-wrapper">
-    <div class="container-fluid">
-
-        <h1>@ViewData["Title"]</h1>
-
-        <dl class="row">
-            <dt class="col-sm-3">Proje Adı:</dt>
-            <dd class="col-sm-9">@Model.</dd>
-
-            <dt class="col-sm-3">Görev Adı:</dt>
-            <dd class="col-sm-9">@Model.TaskName</dd>
-
-            <dt class="col-sm-3">İlerleme:</dt>
-            <dd class="col-sm-9">@Model.Progress %</dd>
-
-            <dt class="col-sm-3">Açıklama:</dt>
-            <dd class="col-sm-9">@Model.Description</dd>
-
-            <dt class="col-sm-3">Durum:</dt>
-            <dd class="col-sm-9">@Model.Status</dd>
-
-            <dt class="col-sm-3">Oluşturulma Tarihi:</dt>
-            <dd class="col-sm-9">@Model.CreatedDate.ToShortDateString()</dd>
-
-            <dt class="col-sm-3">Bitiş Tarihi:</dt>
-            <dd class="col-sm-9">@Model.DueDate.ToShortDateString()</dd>
-        </dl>
-
-        <div class="row">
-            <div class="col-sm-12">
-                <a href="javascript:history.back()" class="btn btn-secondary">Geri Dön</a>
+    <section class="content">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Görev Bilgileri</h3>
             </div>
+            <!-- /.card-header -->
+
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-3">Proje Adı:</dt>
+                    <dd class="col-sm-9">@Model.Project.ProjectName</dd>
+
+                    <dt class="col-sm-3">Görev Adı:</dt>
+                    <dd class="col-sm-9">@Model.TaskName</dd>
+
+                    <dt class="col-sm-3">İlerleme:</dt>
+                    <dd class="col-sm-9">@Model.Progress %</dd>
+
+                    <dt class="col-sm-3">Açıklama:</dt>
+                    <dd class="col-sm-9">@Model.Description</dd>
+
+                    <dt class="col-sm-3">Durum:</dt>
+                    <dd class="col-sm-9">@Model.Status</dd>
+
+                    <dt class="col-sm-3">Oluşturulma Tarihi:</dt>
+                    <dd class="col-sm-9">@Model.CreatedDate.ToShortDateString()</dd>
+
+                    <dt class="col-sm-3">Bitiş Tarihi:</dt>
+                    <dd class="col-sm-9">@Model.DueDate.ToShortDateString()</dd>
+                </dl>
+
+                <div class="row">
+                    <div class="col-sm-12 text-left">
+                        <a href="javascript:history.back()" class="btn btn-warning">
+                            <i class="fas fa-arrow-left"></i> Geri Dön
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
         </div>
-    </div>
+        <!-- /.card -->
+    </section>
+    <!-- /.content -->
 </div>

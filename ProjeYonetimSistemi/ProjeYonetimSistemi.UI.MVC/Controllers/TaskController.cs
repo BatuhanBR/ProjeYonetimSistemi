@@ -79,60 +79,99 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
 
         public IActionResult Detail(int id)
         {
-            var task = _context.Tasks.FirstOrDefault(t => t.Id == id);
+            var task = _context.Tasks.Include(t => t.Project).FirstOrDefault(t => t.Id == id);
             if (task == null)
             {
-                return NotFound(); 
+                return NotFound();
             }
             return View(task);
         }
+
         [HttpGet]
-        public async Task<IActionResult> Edit(int id)
+        public IActionResult Edit(int id)
         {
-            var task = await _context.Tasks
-                .Include(t => t.Project)
-                .FirstOrDefaultAsync(t => t.Id == id);
+            var task = _context.Tasks.Find(id);
 
             if (task == null)
             {
                 return NotFound();
             }
 
-            var taskDto = _mapper.Map<UpdateTaskDto>(task);
+            var projects = _context.Projects
+                .Select(p => new SelectListItem
+                {
+                    Value = p.Id.ToString(),
+                    Text = p.ProjectName
+                }).ToList();
 
-            var projects = await _context.Projects.ToListAsync();
-            ViewBag.Projects = new SelectList(projects, "Id", "ProjectName");
+            ViewBag.Projects = projects;
 
-            return View(taskDto);
+            //// TeamMembers verilerini almak
+            //var teamMembers = _context.TeamMembers // Artık mevcut olmalı
+            //    .Select(tm => new SelectListItem
+            //    {
+            //        Value = tm.Id.ToString(),
+            //        Text = tm.Name
+            //    }).ToList();
+
+            //ViewBag.TeamMembers = teamMembers;
+
+            var model = new UpdateTaskDto
+            {
+                TaskId = task.Id,
+                TaskName = task.TaskName,
+                Description = task.Description,
+                ProjectId = task.ProjectId,
+                Progress = task.Progress,
+                Status = task.Status,
+                CreatedDate = task.CreatedDate,
+                
+            };
+
+            return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(UpdateTaskDto taskDto)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var task = await _context.Tasks.FindAsync(taskDto.Id);
-                if (task == null)
+                // ModelState hatalarını kontrol edin
+                foreach (var modelState in ModelState)
                 {
-                    return NotFound();
+                    var errors = modelState.Value.Errors;
+                    foreach (var error in errors)
+                    {
+                        // Hata mesajlarını loglayın veya bir yere yazdırın
+                        Console.WriteLine(error.ErrorMessage);
+                    }
                 }
 
-                _mapper.Map(taskDto, task);
+                var projects = _context.Projects
+                    .Select(p => new SelectListItem
+                    {
+                        Value = p.Id.ToString(),
+                        Text = p.ProjectName
+                    }).ToList();
+                ViewBag.Projects = projects;
 
-                _context.Tasks.Update(task);
-                await _context.SaveChangesAsync();
-
-                return RedirectToAction("Index");
+                return View(taskDto);
             }
 
-            var projects = await _context.Projects.ToListAsync();
-            ViewBag.Projects = new SelectList(projects, "Id", "ProjectName");
-            return View(taskDto);
+            var task = await _context.Tasks.FindAsync(taskDto.Id);
+            if (task == null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(taskDto, task);
+
+            _context.Tasks.Update(task);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
         }
-
-
         #endregion
-
     }
 }

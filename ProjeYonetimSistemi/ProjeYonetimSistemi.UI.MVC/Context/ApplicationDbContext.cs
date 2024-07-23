@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ProjeYonetimSistemi.UI.MVC.Entity;
 using ProjeYonetimSistemi.UI.MVC.Models;
+using System.Reflection.Emit;
 
 namespace ProjeYonetimSistemi.UI.MVC.Context
 {
@@ -16,6 +17,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Context
 
         public DbSet<ProjectEntity> Projects { get; set; }
         public DbSet<TaskEntity> Tasks { get; set; }
+        public DbSet<TeamMember> TeamMembers { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -24,10 +26,12 @@ namespace ProjeYonetimSistemi.UI.MVC.Context
                 .HasOne(t => t.Project)
                 .WithMany() // 
                 .HasForeignKey(t => t.ProjectId);
+
+
+
         }
 
+
+
     }
-
-
-
 }

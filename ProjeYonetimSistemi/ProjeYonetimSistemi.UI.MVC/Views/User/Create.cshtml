@@ -1,40 +1,134 @@
 ﻿@model ProjeYonetimSistemi.UI.MVC.Models.CreateUserViewModel
 
 @{
-    ViewData["Title"] = "Yeni Kullanıcı Ekle";
+    ViewData["Title"] = "Kullanıcı Yönetimi";
+    var users = ViewBag.Users as List<ApplicationUser>;
 }
 
 <div class="content-wrapper">
     <section class="content">
         <div class="container-fluid">
-            <h2>@ViewData["Title"]</h2>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">@ViewData["Title"]</h3>
+                    <div class="card-tools">
+                        <a class="btn btn-primary float-left" href="@Url.Action("Create", "User")" style="margin-left: 2px;">
+                            <i class="fas fa-plus"></i> Kullanıcı Ekle
+                        </a>
+                    </div>
+                </div>
+                <!-- /.card-header -->
 
-            <form asp-action="Create" method="post">
-
-                <div class="form-group">
-                    <label asp-for="FirstName" class="control-label">Ad</label>
-                    <input asp-for="FirstName" class="form-control" />
-                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                <div class="card-body">
+                    <!-- Kullanıcı Ekleme Formu -->
+                    <form asp-action="Create" method="post">
+                        <div class="form-group">
+                            <label asp-for="FirstName" class="control-label">Ad</label>
+                            <input asp-for="FirstName" class="form-control" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="LastName" class="control-label">Soyad</label>
+                            <input asp-for="LastName" class="form-control" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Email" class="control-label">E-posta</label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Password" class="control-label">Şifre</label>
+                            <input asp-for="Password" type="password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="form-group d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-warning">Geri Dön</a>
+                            <button type="submit" class="btn btn-success">Ekle</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label asp-for="LastName" class="control-label">Soyad</label>
-                    <input asp-for="LastName" class="form-control" />
-                    <span asp-validation-for="LastName" class="text-danger"></span>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+            <!-- Kullanıcı Listeleme Tablosu -->
+            @if (users != null && users.Count > 0)
+            {
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h3 class="card-title">Mevcut Kullanıcılar</h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <table class="table table-striped projects">
+                            <thead>
+                                <tr>
+                                    <th style="width: 1%">
+                                        #
+                                    </th>
+                                    <th style="width: 20%">
+                                        Kullanıcı Adı
+                                    </th>
+                                    <th style="width: 30%">
+                                        Profil Resmi
+                                    </th>
+                                    <th style="width: 8%" class="text-center">
+                                        Durum
+                                    </th>
+                                    <th style="width: 20%">
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int i = 1; 
+                                }
+                                @foreach (var user in users)
+                                {
+                                    <tr>
+                                        <td>
+                                            @i++ 
+                                        </td>
+                                        <td>
+                                            <a>
+                                                @user.FirstName @user.LastName
+                                            </a>
+                                            <br>
+                                        </td>
+                                        <td>
+                                            <ul class="list-inline">
+                                                <li class="list-inline-item">
+                                                    <img alt="Avatar" class="table-avatar" src="~/img/avatar.png">
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td class="project-state">
+                                            <span class="badge badge-success">Aktif</span>
+                                        </td>
+                                        <td class="project-actions text-right">
+                                            <a class="btn btn-primary btn-sm" href="@Url.Action("Detail", new { id = user.Id })">
+                                                <i class="fas fa-folder"></i> Detay
+                                            </a>
+                                            <a class="btn btn-info btn-sm" href="@Url.Action("Update", new { id = user.Id })">
+                                                <i class="fas fa-pencil-alt"></i> Güncelle
+                                            </a>
+                                            <a class="btn btn-danger btn-sm" href="@Url.Action("Delete", new { id = user.Id })">
+                                                <i class="fas fa-trash"></i> Sil
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Email" class="control-label">E-posta</label>
-                    <input asp-for="Email" class="form-control" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
+            }
+            else
+            {
+                <div class="alert alert-info mt-4" role="alert">
+                    Mevcut kullanıcı bulunmamaktadır.
                 </div>
-                <div class="form-group">
-                    <label asp-for="Password" class="control-label">Şifre</label>
-                    <input asp-for="Password" type="password" class="form-control" />
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                </div>
-                <div class="form-group text-right">
-                    <button type="submit" class="btn btn-success">Ekle</button>
-                </div>
-            </form>
+            }
         </div>
     </section>
+    <!-- /.content -->
 </div>

@@ -1,155 +1,107 @@
-﻿<div class="content-wrapper" style="min-height: 1604.44px;">
+﻿@{
+    ViewData["Title"] = "Kullanıcılar";
+    var users = ViewBag.Users as List<ApplicationUser>;
+}
 
-	<section class="content-header">
-		<div class="container-fluid">
-			<div class="row mb-2">
-				<div class="col-sm-6">
-					<h1>Kullanıcı Yönetimi</h1>
-				</div>
-				<div class="col-sm-6">
-					<ol class="breadcrumb float-sm-right">
-						<li class="breadcrumb-item"><a href="#">Anasayfa</a></li>
-						<li class="breadcrumb-item active">Kullanıcı Yönetimi</li>
-					</ol>
-				</div>
-			</div>
-		</div>
-	</section>
+<div class="content-wrapper" style="min-height: 1604.44px;">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>@ViewData["Title"]</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Anasayfa</a></li>
+                        <li class="breadcrumb-item active">@ViewData["Title"]</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
 
-	<section class="content">
-
-		<div class="card">
-			<div class="card-header">
-				<a class="btn btn-primary float-left" href="@Url.Action("Create", "User")" style="margin-left: 2px;">
-					<i class="fas fa-plus"></i>   Kullanıcı Ekle
-				</a>
-				<h3 class="card-title"></h3>
-				<div class="card-tools">
-					<button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-						<i class="fas fa-minus"></i>
-					</button>
-					<button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-						<i class="fas fa-times"></i>
-					</button>
-				</div>
-			</div>
-			<div class="card-body p-0">
-				<table class="table table-striped projects">
-					<thead>
-						<tr>
-							<th style="width: 1%">
-								#
-							</th>
-							<th style="width: 20%">
-								Kullanıcı Adı
-							</th>
-							<th style="width: 30%">
-								Profil Resmi
-							</th>
-						 
-							<th style="width: 8%" class="text-center">
-								Durum
-							</th>
-							<th style="width: 20%">
-							</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>
-								#
-							</td>
-							<td>
-								<a>
-									Halil ŞAHİN
-								</a>
-								<br>
-								<small>
-									Oluşturulma Tarihi: 27.06.2024
-								</small>
-							</td>
-							<td>
-								<ul class="list-inline">
-									<li class="list-inline-item">
-										<img alt="Avatar" class="table-avatar" src="~/img/avatar.png">
-									</li>
-						 
-									</li>
-								</ul>
-							</td>
-							 
-							<td class="project-state">
-								<span class="badge badge-success">Bitirilmiş</span>
-							</td>
-							<td class="project-actions text-right">
-								<a class="btn btn-primary btn-sm" href="~/User/Detail">
-									<i class="fas fa-folder">
-									</i>
-									Detay
-								</a>
-								<a class="btn btn-info btn-sm" href="~/User/Update">
-									<i class="fas fa-pencil-alt">
-									</i>
-									Güncelle
-								</a>
-								<a class="btn btn-danger btn-sm" href="~/User/Delete">
-									<i class="fas fa-trash">
-									</i>
-									Sil
-								</a>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								#
-							</td>
-							<td>
-								<a>
-									Batuhan BARAKALI
-								</a>
-								<br>
-								<small>
-									Oluşturulma Tarihi: 27.06.2024
-								</small>
-							</td>
-							<td>
-								<ul class="list-inline">
-							 
-									<li class="list-inline-item">
-										<img alt="Avatar" class="table-avatar" src="~/img/avatar2.png">
-									</li>
-								</ul>
-							</td>
-						 
-							<td class="project-state">
-								<span class="badge badge-success">Bitirilmiş</span>
-							</td>
-							<td class="project-actions text-right">
-								<a class="btn btn-primary btn-sm" href="~/User/Detail">
-									<i class="fas fa-folder">
-									</i>
-									Detay
-								</a>
-								<a class="btn btn-info btn-sm" href="~/User/Update">
-									<i class="fas fa-pencil-alt">
-									</i>
-									Güncelle
-								</a>
-								<a class="btn btn-danger btn-sm" href="~/User/Delete">
-									<i class="fas fa-trash">
-									</i>
-									Sil
-								</a>
-							</td>
-						</tr>
-						
-						
-					</tbody>
-				</table>
-			</div>
-
-		</div>
-
-	</section>
-
+    <section class="content">
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-primary float-left" href="@Url.Action("Create", "User")" style="margin-left: 2px;">
+                    <i class="fas fa-plus"></i> Kullanıcı Ekle
+                </a>
+                <h3 class="card-title"></h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-striped projects">
+                    <thead>
+                        <tr>
+                            <th style="width: 1%">
+                                #
+                            </th>
+                            <th style="width: 20%">
+                                Kullanıcı Adı
+                            </th>
+                            <th style="width: 30%">
+                                Profil Resmi
+                            </th>
+                            <th style="width: 8%" class="text-center">
+                                Durum
+                            </th>
+                            <th style="width: 20%">
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int i = 1;
+                        }
+                        @if (users != null)
+                        {
+                            foreach (var user in users)
+                            {
+                                <tr>
+                                    <td>
+                                        @i++
+                                    </td>
+                                    <td>
+                                        <a>
+                                            @user.FirstName @user.LastName
+                                        </a>
+                                        <br>
+                                        
+                                    </td>
+                                    <td>
+                                        <ul class="list-inline">
+                                            <li class="list-inline-item">
+                                                <img alt="Avatar" class="table-avatar" src="~/img/avatar.png">
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td class="project-state">
+                                        <span class="badge badge-success">Aktif</span>
+                                    </td>
+                                    <td class="project-actions text-right">
+                                        <a class="btn btn-primary btn-sm" href="@Url.Action("Detail", new { id = user.Id })">
+                                            <i class="fas fa-folder"></i> Detay
+                                        </a>
+                                        <a class="btn btn-info btn-sm" href="@Url.Action("Update", new { id = user.Id })">
+                                            <i class="fas fa-pencil-alt"></i> Güncelle
+                                        </a>
+                                        <a class="btn btn-danger btn-sm" href="@Url.Action("Delete", new { id = user.Id })">
+                                            <i class="fas fa-trash"></i> Sil
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
 </div>

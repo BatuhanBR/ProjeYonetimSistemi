@@ -11,6 +11,9 @@ namespace ProjeYonetimSistemi.UI.MVC
         {
             CreateMap<TaskEntity,addTaskDto>();
             CreateMap<addTaskDto, TaskEntity>();
+
+            CreateMap<TaskEntity, UpdateTaskDto>();
+            CreateMap<UpdateTaskDto, TaskEntity>();
         }
     }
 }
