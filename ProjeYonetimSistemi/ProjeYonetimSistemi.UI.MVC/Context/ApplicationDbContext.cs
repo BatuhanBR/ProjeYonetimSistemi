@@ -16,7 +16,16 @@ namespace ProjeYonetimSistemi.UI.MVC.Context
 
         public DbSet<ProjectEntity> Projects { get; set; }
         public DbSet<TaskEntity> Tasks { get; set; }
-       
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<TaskEntity>()
+                .HasOne(t => t.Project)
+                .WithMany() // 
+                .HasForeignKey(t => t.ProjectId);
+        }
+
     }
 
 

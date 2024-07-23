@@ -1,6 +1,7 @@
 ﻿#region NAMESPACES
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjeYonetimSistemi.UI.MVC.Context;
 using ProjeYonetimSistemi.UI.MVC.Dto.Task;
@@ -29,7 +30,9 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
         #region ACTION RESULTS
         public async Task<IActionResult> Index()
         {
-            var tasks = await _context.Tasks.ToListAsync();
+            var tasks = await _context.Tasks
+                .Include(t => t.Project)  // İlişkilendirilmiş Project'leri yükleyin
+                .ToListAsync();
             return View(tasks);
         }
 
@@ -83,6 +86,52 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
             }
             return View(task);
         }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var task = await _context.Tasks
+                .Include(t => t.Project)
+                .FirstOrDefaultAsync(t => t.Id == id);
+
+            if (task == null)
+            {
+                return NotFound();
+            }
+
+            var taskDto = _mapper.Map<UpdateTaskDto>(task);
+
+            var projects = await _context.Projects.ToListAsync();
+            ViewBag.Projects = new SelectList(projects, "Id", "ProjectName");
+
+            return View(taskDto);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(UpdateTaskDto taskDto)
+        {
+            if (ModelState.IsValid)
+            {
+                var task = await _context.Tasks.FindAsync(taskDto.Id);
+                if (task == null)
+                {
+                    return NotFound();
+                }
+
+                _mapper.Map(taskDto, task);
+
+                _context.Tasks.Update(task);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("Index");
+            }
+
+            var projects = await _context.Projects.ToListAsync();
+            ViewBag.Projects = new SelectList(projects, "Id", "ProjectName");
+            return View(taskDto);
+        }
+
+
         #endregion
 
     }

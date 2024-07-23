@@ -39,7 +39,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Update(int id)
+        public async Task<IActionResult> Edit(int id)
         {
             var project = await _context.Projects.FindAsync(id);
             if (project == null)

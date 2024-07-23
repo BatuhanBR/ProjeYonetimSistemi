@@ -1,7 +1,7 @@
-﻿@model ProjeYonetimSistemi.UI.MVC.Dto.Task.addTaskDto
+﻿@model ProjeYonetimSistemi.UI.MVC.Dto.Task.UpdateTaskDto
 
 @{
-    ViewBag.Title = "Create Task";
+    ViewBag.Title = "Edit Task";
 }
 
 <div class="content-wrapper">
@@ -10,14 +10,14 @@
             <div class="col-md-12">
                 <div class="card" style="background-color: inherit; border: none;">
                     <div class="card-header">
-                        <h1>Proje Ekle</h1>
+                        <h1>Görev Düzenle</h1>
                     </div>
                     <div class="card-body">
-                        <form asp-action="Create" method="post">
+                        <form asp-action="Edit" method="post">
                             <div class="form-group">
                                 <label asp-for="ProjectId">Proje İsmi</label>
-                                <select asp-for="ProjectId" class="form-control" asp-items="@(new SelectList(ViewBag.Projects, "Id", "ProjectName"))">
-                                    <option value="">Proje Seçiniz</option>
+                                <select asp-for="ProjectId" class="form-control" asp-items="ViewBag.Projects">
+                                    <option value="">Proje Seçin</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -35,8 +35,13 @@
                                 <textarea asp-for="Description" class="form-control"></textarea>
                                 <span asp-validation-for="Description" class="text-danger"></span>
                             </div>
+                            <div class="form-group">
+                                <label asp-for="DueDate" class="control-label">Teslim Tarihi</label>
+                                <input asp-for="DueDate" class="form-control" type="date" />
+                                <span asp-validation-for="DueDate" class="text-danger"></span>
+                            </div>
                             <div class="form-group text-right">
-                                <button type="submit" class="btn btn-primary" data-val="true" data-val-required="Lütfen tüm alanları doldurunuz.">Ekle</button>
+                                <button type="submit" class="btn btn-primary">Güncelle</button>
                             </div>
                         </form>
                     </div>

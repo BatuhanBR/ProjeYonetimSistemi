@@ -1,11 +1,9 @@
 #region NAMESPACES
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using ProjeYonetimSistemi.UI.MVC;
 using ProjeYonetimSistemi.UI.MVC.Context;
 using ProjeYonetimSistemi.UI.MVC.Middleware;
-using AutoMapper;
-using ProjeYonetimSistemi.UI.MVC;
 using ProjeYonetimSistemi.UI.MVC.Models;
 #endregion
 

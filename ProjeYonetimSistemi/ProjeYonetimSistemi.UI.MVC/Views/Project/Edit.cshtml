@@ -24,6 +24,7 @@
             </div>
             <div class="card-body">
                 <form asp-action="UpdateProject" method="post">
+
                     <div class="form-group">
                         <label>Proje İsmi</label>
                         <input asp-for="ProjectName" class="form-control" />
@@ -46,8 +47,8 @@
 
                     <input type="hidden" asp-for="Id" />
 
-                    <button type="submit" class="btn btn-success">Kaydet</button>
-                    <a href="@Url.Action("Index", "Project")" class="btn btn-primary">Geri Dön</a>
+                    <button type="submit" class="btn btn-success fa-pull-right"><i class="fas fa-save"></i>  Kaydet</button>
+                    <a href="@Url.Action("Index", "Project")" class="btn btn-warning  pull-left"><i class="fas fa-chevron-left"></i> Geri Dön</a>
                 </form>
             </div>
         </div>

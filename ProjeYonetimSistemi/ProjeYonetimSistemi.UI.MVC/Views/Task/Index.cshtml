@@ -10,7 +10,6 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                                          
                         <li class="breadcrumb-item"><a href="">Ana Sayfa</a></li>
                         <li class="breadcrumb-item active">Görevler</li>
                     </ol>
@@ -23,8 +22,7 @@
 
         <div class="card">
             <div class="card-header">
-
-                <a href="@Url.Action("Create", "Task")" class="btn btn-success float-left" style="margin-left: 2px;">
+                <a href="@Url.Action("Create", "Task")" class="btn btn-primary float-left" style="margin-left: 2px;">
                     <i class="fas fa-plus"></i> Görev Ekle
                 </a>
 
@@ -65,7 +63,7 @@
                                 <td> @i </td>
                                 <td>@item.TaskName</td>
                                 <td>@item.Description</td>
-                                <td></td>
+                                <td>@item.Project?.ProjectName</td>
                                 <td>
                                     <div class="progress progress-xs">
                                         <div class="progress-bar" style="width: @item.Progress%" aria-valuemin="0" aria-valuemax="100">@item.Progress%</div>
@@ -92,7 +90,8 @@
                                     <a class="btn btn-primary btn-sm" style="margin:6px" href="~/Task/Detail/@item.Id">
                                         <i class="fas fa-folder"></i>
                                     </a>
-                                    <a class="btn btn-info btn-sm" style="margin:6px" href="~/Task/Update">
+
+                                    <a class="btn btn-info btn-sm" style="margin:6px" href="~/Task/Edit">
                                         <i class="fas fa-pencil-alt"></i>
                                     </a>
 
