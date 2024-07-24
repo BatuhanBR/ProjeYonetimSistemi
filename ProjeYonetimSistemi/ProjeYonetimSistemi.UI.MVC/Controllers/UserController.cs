@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ProjeYonetimSistemi.UI.MVC.Models;
+using System.Linq;
+using System.Threading.Tasks;
 
 #endregion
 
@@ -16,22 +18,69 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
             _userManager = userManager;
         }
 
-
         #region ACTION RESULTS
+
         public async Task<IActionResult> Index()
         {
             var users = _userManager.Users.ToList(); // Kullanıcıları çek
             ViewBag.Users = users; // Kullanıcıları ViewBag ile geçiyoruz
             return View();
         }
+
         public IActionResult Detail()
         {
             return View();
         }
-        public IActionResult Update()
+
+        public async Task<IActionResult> Update(string id)
         {
-            return View();
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var model = new UpdateUserViewModel
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email
+            };
+
+            return View(model);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(UpdateUserViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = await _userManager.FindByIdAsync(model.Id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            user.Email = model.Email;
+            var result = await _userManager.UpdateAsync(user);
+
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index");
+            }
+
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+
+            return View(model);
+        }
+
         public IActionResult Delete(string id)
         {
             var user = _userManager.Users.FirstOrDefault(u => u.Id == id);
@@ -44,7 +93,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
             {
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                Email = user.Email // Email eklemeyi unutmayın
+                Email = user.Email
             };
             return View(model);
         }
@@ -113,8 +162,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
             ViewBag.Users = _userManager.Users.ToList();
             return View(model);
         }
+
         #endregion
-
-
     }
 }
