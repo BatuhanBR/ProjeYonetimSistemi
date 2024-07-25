@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjeYonetimSistemi.UI.MVC.Context;
 
@@ -11,9 +12,10 @@ using ProjeYonetimSistemi.UI.MVC.Context;
 namespace ProjeYonetimSistemi.UI.MVC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240724113448_AddIsActiveColumnToProjects")]
+    partial class AddIsActiveColumnToProjects
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -280,14 +282,9 @@ namespace ProjeYonetimSistemi.UI.MVC.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TeamId")
-                        .HasColumnType("int");
-
                     b.HasKey("TeamMemberId");
 
                     b.HasIndex("JobTitleId");
-
-                    b.HasIndex("TeamId");
 
                     b.ToTable("TeamMembers");
                 });
@@ -468,15 +465,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProjeYonetimSistemi.UI.MVC.Entity.TeamEntity", "Team")
-                        .WithMany("TeamMembers")
-                        .HasForeignKey("TeamId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("JobTitle");
-
-                    b.Navigation("Team");
                 });
 
             modelBuilder.Entity("ProjeYonetimSistemi.UI.MVC.Models.TeamMember", b =>
@@ -494,8 +483,6 @@ namespace ProjeYonetimSistemi.UI.MVC.Migrations
             modelBuilder.Entity("ProjeYonetimSistemi.UI.MVC.Entity.TeamEntity", b =>
                 {
                     b.Navigation("JobTitle");
-
-                    b.Navigation("TeamMembers");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,31 +1,35 @@
-﻿#region NAMESPACES
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProjeYonetimSistemi.UI.MVC.Context;
 using ProjeYonetimSistemi.UI.MVC.Entity;
-
-#endregion
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ProjeYonetimSistemi.UI.MVC.Controllers
 {
     public class ProjectController : Controller
     {
-        #region FIELDS
         private readonly ApplicationDbContext _context;
 
-        #endregion
-
-        #region CTOR
         public ProjectController(ApplicationDbContext context)
         {
             _context = context;
         }
-        #endregion
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string status)
         {
-            var result = _context.Projects.ToList();
-            return View(result);
+            IQueryable<ProjectEntity> projects = _context.Projects;
+
+            if (status == "active")
+            {
+                projects = projects.Where(p => p.IsActive);
+            }
+            else if (status == "passive")
+            {
+                projects = projects.Where(p => !p.IsActive);
+            }
+
+            return View(await projects.ToListAsync());
         }
 
         public async Task<IActionResult> Detail(int id)
@@ -75,6 +79,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
                 existingProject.TeamMembers = updatedProject.TeamMembers;
                 existingProject.Description = updatedProject.Description;
                 existingProject.CreatedDate = updatedProject.CreatedDate;
+                existingProject.IsActive = updatedProject.IsActive; 
 
                 _context.Projects.Update(existingProject);
                 await _context.SaveChangesAsync();
@@ -92,9 +97,6 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
                 }
             }
         }
-
-      
-
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

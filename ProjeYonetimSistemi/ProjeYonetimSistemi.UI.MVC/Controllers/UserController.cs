@@ -10,8 +10,10 @@ using System.Threading.Tasks;
 namespace ProjeYonetimSistemi.UI.MVC.Controllers
 {
     public class UserController : Controller
+
     {
         private readonly UserManager<ApplicationUser> _userManager;
+
 
         public UserController(UserManager<ApplicationUser> userManager)
         {
@@ -22,9 +24,21 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var users = _userManager.Users.ToList(); // Kullanıcıları çek
-            ViewBag.Users = users; // Kullanıcıları ViewBag ile geçiyoruz
-            return View();
+            var users = _userManager.Users.ToList();
+            var userRoles = new List<UserRoleViewModel>();
+
+            foreach (var user in users)
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+                var role = roles.Count > 0 ? roles[0] : "Rol Bilinmiyor";
+                userRoles.Add(new UserRoleViewModel
+                {
+                    User = user,
+                    Role = role
+                });
+            }
+
+            return View(userRoles);
         }
 
         public IActionResult Detail()
