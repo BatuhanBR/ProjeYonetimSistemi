@@ -48,7 +48,7 @@
                         <tr>
                             <th style="width: 1%">#</th>
                             <th style="width: 20%">Proje İsmi</th>
-                            <th style="width: 30%">Ekip Üyeleri</th>
+                            <th style="width: 30%">Takım</th>
                             <th>Proje İlerlemesi</th>
                             <th style="width: 8%" class="text-center">Durum</th>
                             <th style="width: 20%"></th>
@@ -69,11 +69,7 @@
                                     <small>Oluşturulma Tarihi : @item.CreatedDate</small>
                                 </td>
                                 <td>
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item">
-                                            <img alt="Avatar" class="table-avatar" src="~/img/avatar5.png">
-                                        </li>
-                                    </ul>
+                                    @item.TeamEntity.TeamName
                                 </td>
                                 <td class="project_progress">
                                     <div class="progress progress-sm">
@@ -81,11 +77,13 @@
                                     </div>
                                     <small>57% Tamamlandı</small>
                                 </td>
+
                                 <td class="project-state">
                                     <span class="badge @(item.IsActive ? "badge-success" : "badge-secondary")">
                                         @(item.IsActive ? "Aktif" : "Pasif")
                                     </span>
                                 </td>
+
                                 <td class="project-actions text-right">
                                     <a class="btn btn-primary btn-sm" href="~/Project/Detail/@item.Id">
                                         <i class="fas fa-folder"></i> Detay
@@ -93,11 +91,15 @@
                                     <a class="btn btn-info btn-sm" href="~/Project/Edit/@item.Id">
                                         <i class="fas fa-pencil-alt"></i> Düzenle
                                     </a>
+                                  
+                                    
                                     <!-- Modal Trigger Button -->
                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal-@item.Id">
                                         <i class="fas fa-trash"></i> Sil
                                     </button>
                                     <!-- Modal Trigger Button -->
+
+
                                     <!-- Modal -->
                                     <div class="modal fade" id="deleteModal-@item.Id" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel-@item.Id" aria-hidden="true">
                                         <div class="modal-dialog" role="document">

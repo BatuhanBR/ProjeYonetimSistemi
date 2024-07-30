@@ -1,18 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ProjeYonetimSistemi.UI.MVC.Entity
+namespace ProjeYonetimSistemi.UI.MVC.Dto.Project
 {
-    public class ProjectEntity
+    public class addProjectDto
     {
-
-        public ProjectEntity()
-        {
-           TeamEntity= new TeamEntity();
-
-
-        }
-        public int Id { get; set; }
+       
         [Required(ErrorMessage = "Proje adı zorunludur.")]
         public string ProjectName { get; set; }
         [Required(ErrorMessage = "Takım seçilmelidir.")]
@@ -22,8 +14,5 @@ namespace ProjeYonetimSistemi.UI.MVC.Entity
         public string Description { get; set; }
         public bool IsActive { get; set; }
         public DateTime? CreatedDate { get; set; } = DateTime.Now;
-        public TeamEntity? TeamEntity { get; set; }
-
-
     }
 }

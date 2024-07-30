@@ -174,7 +174,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Migrations
 
                     b.HasIndex("TeamEntityTeamId");
 
-                    b.ToTable("Jobs");
+                    b.ToTable("JobTitles");
                 });
 
             modelBuilder.Entity("ProjeYonetimSistemi.UI.MVC.Entity.ProjectEntity", b =>
@@ -199,11 +199,12 @@ namespace ProjeYonetimSistemi.UI.MVC.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TeamMembers")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("TeamId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TeamId");
 
                     b.ToTable("Projects");
                 });
@@ -445,8 +446,19 @@ namespace ProjeYonetimSistemi.UI.MVC.Migrations
             modelBuilder.Entity("ProjeYonetimSistemi.UI.MVC.Entity.JobTitle", b =>
                 {
                     b.HasOne("ProjeYonetimSistemi.UI.MVC.Entity.TeamEntity", null)
-                        .WithMany("JobTitle")
+                        .WithMany("JobTitles")
                         .HasForeignKey("TeamEntityTeamId");
+                });
+
+            modelBuilder.Entity("ProjeYonetimSistemi.UI.MVC.Entity.ProjectEntity", b =>
+                {
+                    b.HasOne("ProjeYonetimSistemi.UI.MVC.Entity.TeamEntity", "TeamEntity")
+                        .WithMany()
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("TeamEntity");
                 });
 
             modelBuilder.Entity("ProjeYonetimSistemi.UI.MVC.Entity.TaskEntity", b =>
@@ -493,7 +505,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Migrations
 
             modelBuilder.Entity("ProjeYonetimSistemi.UI.MVC.Entity.TeamEntity", b =>
                 {
-                    b.Navigation("JobTitle");
+                    b.Navigation("JobTitles");
 
                     b.Navigation("TeamMembers");
                 });

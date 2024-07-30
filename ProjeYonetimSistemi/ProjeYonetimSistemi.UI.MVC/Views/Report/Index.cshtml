@@ -1,9 +1,8 @@
-﻿
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css">
-<div class="content-wrapper">
+﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css">
 
+<div class="content-wrapper">
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -19,22 +18,24 @@
             </div>
         </div>
     </section>
-<section class="content">
-            <div class="card card-default">
-                <div class="card-header">
-                    <h3 class="card-title">Rapor Yönetim</h3>
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
+
+    <section class="content">
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">Rapor Yönetimi</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="row mb-3">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label>Projeler</label>
                                 <select class="form-control select2" style="width: 100%;">
@@ -47,18 +48,28 @@
                                     <option>Proje 6</option>
                                 </select>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label>Görevler</label>
                                 <select class="form-control select2" disabled style="width: 100%;">
                                     <option selected="selected">Alabama</option>
-                                   <option>Görevler 1</option>
-                                   <option>Görevler 2</option>
-                                   <option>Görevler 3</option>
-                                   <option>Görevler 4</option>
-                                <option>Görevler 5</option>
-                                <option>Görevler 6</option>
+                                    <option>Görevler 1</option>
+                                    <option>Görevler 2</option>
+                                    <option>Görevler 3</option>
+                                    <option>Görevler 4</option>
+                                    <option>Görevler 5</option>
+                                    <option>Görevler 6</option>
                                 </select>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label>Tarih Seçin</label>
                                 <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
@@ -69,7 +80,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label>Kişiler</label>
                                 <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
@@ -82,6 +96,11 @@
                                     <option>İsim</option>
                                 </select>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label>Bir şey gelicek.</label>
                                 <select class="form-control select2" style="width: 100%;">
@@ -94,27 +113,35 @@
                                     <option>Washington</option>
                                 </select>
                             </div>
-                            
                         </div>
                     </div>
-                    <h5></h5>
-                </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="#" class="btn btn-warning">Geri Dön</a>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <button type="submit" class="btn btn-primary">Ekle</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-   </section>
+        </div>
+    </section>
 </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.full.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('.select2').select2();
-            $('#datetimepicker1').datetimepicker({
-                format: 'L'
-            });
-            $('#datetimepicker2').datetimepicker({
-                format: 'LT'
-            });
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.select2').select2();
+        $('#datetimepicker1').datetimepicker({
+            format: 'L'
         });
-    </script>
- 
+        $('#datetimepicker2').datetimepicker({
+            format: 'LT'
+        });
+    });
+</script>

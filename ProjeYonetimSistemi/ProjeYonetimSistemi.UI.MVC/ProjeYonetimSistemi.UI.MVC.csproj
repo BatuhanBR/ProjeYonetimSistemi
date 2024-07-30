@@ -34,8 +34,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
     <Folder Include="Views\Detail\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary1\ProjeYonetimSistemi.Dto.csproj" />
   </ItemGroup>
 
 </Project>

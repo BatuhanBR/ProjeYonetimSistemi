@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ProjeYonetimSistemi.UI.MVC.Models;
-using System.Linq;
-using System.Threading.Tasks;
 
 #endregion
 
@@ -12,13 +10,16 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
     public class UserController : Controller
 
     {
+        #region FIELDS
         private readonly UserManager<ApplicationUser> _userManager;
+        #endregion
 
-
+        #region CTOR
         public UserController(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
         }
+        #endregion
 
         #region ACTION RESULTS
 
@@ -41,9 +42,30 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
             return View(userRoles);
         }
 
-        public IActionResult Detail()
+        public async Task<IActionResult> Detail(string id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var roles = await _userManager.GetRolesAsync(user);
+            var model = new UserDetailViewModel
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                Roles = roles
+            };
+
+            return View(model);
         }
 
         public async Task<IActionResult> Update(string id)
@@ -95,25 +117,33 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
             return View(model);
         }
 
-        public IActionResult Delete(string id)
+        public async Task<IActionResult> Delete(string id)
         {
-            var user = _userManager.Users.FirstOrDefault(u => u.Id == id);
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var user = await _userManager.FindByIdAsync(id);
             if (user == null)
             {
                 return NotFound();
             }
 
-            var model = new CreateUserViewModel
+            var model = new UserDetailViewModel
             {
+                Id = user.Id,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                Email = user.Email
+                Email = user.Email,
+                // Roller de eklenebilir, isteğe bağlı olarak
             };
+
             return View(model);
         }
 
-        [HttpPost]
-        [ActionName("Delete")]
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
@@ -133,7 +163,13 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
                 ModelState.AddModelError("", error.Description);
             }
 
-            return View(new CreateUserViewModel { FirstName = user.FirstName, LastName = user.LastName });
+            return View(new UserDetailViewModel
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email
+            });
         }
 
         public IActionResult Create()

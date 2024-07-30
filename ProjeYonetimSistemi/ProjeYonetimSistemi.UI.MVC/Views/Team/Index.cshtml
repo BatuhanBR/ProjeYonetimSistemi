@@ -59,14 +59,7 @@
                                     <td>@i</td>
                                     <td>@team.TeamName</td>
                                     <td>
-                                        <ul class="list-inline">
-                                            @foreach (var member in team.TeamMembers)
-                                            {
-                                                <li class="list-inline-item">
-                                                    @member.Name @member.SurName
-                                                </li>
-                                            }
-                                        </ul>
+                               
                                     </td>
                                     <td class="project-actions text-right">
                                         <a class="btn btn-info btn-sm" href="@Url.Action("Details", new { id = team.TeamId })">
@@ -75,9 +68,10 @@
                                         <a class="btn btn-primary btn-sm" href="@Url.Action("Edit", new { id = team.TeamId })">
                                             <i class="fas fa-pencil-alt"></i> Düzenle
                                         </a>
-                                        <a class="btn btn-danger btn-sm" href="@Url.Action("Delete", new { id = team.TeamId })">
+                                        <a class="btn btn-danger btn-sm" href="@Url.Action("Delete", new { id = team.TeamId })" onclick="return confirm('Bu takımı silmek istediğinizden emin misiniz?');">
                                             <i class="fas fa-trash"></i> Sil
                                         </a>
+
                                     </td>
                                 </tr>
                             }

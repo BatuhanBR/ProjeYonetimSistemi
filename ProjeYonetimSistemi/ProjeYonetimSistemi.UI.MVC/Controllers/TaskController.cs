@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using ProjeYonetimSistemi.UI.MVC.Context;
 using ProjeYonetimSistemi.UI.MVC.Dto.Task;
 using ProjeYonetimSistemi.UI.MVC.Entity;
-
 #endregion
 
 namespace ProjeYonetimSistemi.UI.MVC.Controllers
@@ -16,7 +15,6 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
         #region FIELDS
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
-        private object model;
         #endregion
 
         #region CTOR
@@ -38,53 +36,37 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
 
         public IActionResult Create()
         {
-            var projects = _context.Projects.ToList();
+            var projects = _context.Projects
+                .Select(p => new SelectListItem
+                {
+                    Value = p.Id.ToString(),
+                    Text = p.ProjectName
+                }).ToList();
             ViewBag.Projects = projects;
             return View();
-
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(addTaskDto task)
+        public async Task<IActionResult> Create(addTaskDto taskDto)
         {
             if (ModelState.IsValid)
             {
-                var taskEntity = _mapper.Map<TaskEntity>(task);
-                // taskEntity nesnesini veritabanına kaydet
+                var taskEntity = _mapper.Map<TaskEntity>(taskDto);
                 _context.Tasks.Add(taskEntity);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }
 
-            return View(model);
-        }
-
-
-        [HttpPost]
-        public async Task<IActionResult> Delete(int id)
-        {
-            var task = await _context.Tasks.FindAsync(id);
-            if (task == null)
-            {
-                return NotFound();
-            }
-
-            _context.Tasks.Remove(task);
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction(nameof(Index));
-        }
-
-        public IActionResult Detail(int id)
-        {
-            var task = _context.Tasks.Include(t => t.Project).FirstOrDefault(t => t.Id == id);
-            if (task == null)
-            {
-                return NotFound();
-            }
-            return View(task);
+            // Projeleri ViewBag'e tekrar yükleyin
+            ViewBag.Projects = _context.Projects
+                .Select(p => new SelectListItem
+                {
+                    Value = p.Id.ToString(),
+                    Text = p.ProjectName
+                }).ToList();
+            return View(taskDto);
         }
 
         [HttpGet]
@@ -103,18 +85,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
                     Value = p.Id.ToString(),
                     Text = p.ProjectName
                 }).ToList();
-
             ViewBag.Projects = projects;
-
-            //// TeamMembers verilerini almak
-            //var teamMembers = _context.TeamMembers // Artık mevcut olmalı
-            //    .Select(tm => new SelectListItem
-            //    {
-            //        Value = tm.Id.ToString(),
-            //        Text = tm.Name
-            //    }).ToList();
-
-            //ViewBag.TeamMembers = teamMembers;
 
             var model = new UpdateTaskDto
             {
@@ -124,8 +95,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
                 ProjectId = task.ProjectId,
                 Progress = task.Progress,
                 Status = task.Status,
-                CreatedDate = task.CreatedDate,
-                
+                CreatedDate = task.CreatedDate
             };
 
             return View(model);
@@ -137,17 +107,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
         {
             if (!ModelState.IsValid)
             {
-                // ModelState hatalarını kontrol edin
-                foreach (var modelState in ModelState)
-                {
-                    var errors = modelState.Value.Errors;
-                    foreach (var error in errors)
-                    {
-                        // Hata mesajlarını loglayın veya bir yere yazdırın
-                        Console.WriteLine(error.ErrorMessage);
-                    }
-                }
-
+                // ModelState hatalarını kontrol edin ve projeleri tekrar yükleyin
                 var projects = _context.Projects
                     .Select(p => new SelectListItem
                     {
@@ -159,7 +119,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
                 return View(taskDto);
             }
 
-            var task = await _context.Tasks.FindAsync(taskDto.Id);
+            var task = await _context.Tasks.FindAsync(taskDto.TaskId);
             if (task == null)
             {
                 return NotFound();
@@ -171,6 +131,31 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var task = await _context.Tasks.FindAsync(id);
+            if (task == null)
+            {
+                return NotFound();
+            }
+
+            _context.Tasks.Remove(task);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Detail(int id)
+        {
+            var task = _context.Tasks.Include(t => t.Project).FirstOrDefault(t => t.Id == id);
+            if (task == null)
+            {
+                return NotFound();
+            }
+            return View(task);
         }
         #endregion
     }

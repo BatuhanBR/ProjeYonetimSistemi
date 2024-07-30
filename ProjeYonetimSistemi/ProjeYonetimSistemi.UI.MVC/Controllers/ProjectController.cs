@@ -1,24 +1,34 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿#region NAMESPACES
+using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjeYonetimSistemi.UI.MVC.Context;
 using ProjeYonetimSistemi.UI.MVC.Entity;
-using System.Linq;
-using System.Threading.Tasks;
+using ProjeYonetimSistemi.UI.MVC.Dto.Project;
+#endregion
 
 namespace ProjeYonetimSistemi.UI.MVC.Controllers
 {
     public class ProjectController : Controller
     {
+        #region FIELDS
         private readonly ApplicationDbContext _context;
+        private readonly IMapper _mapper;
+        #endregion
 
-        public ProjectController(ApplicationDbContext context)
+        #region CTOR
+        public ProjectController(ApplicationDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
+        #endregion
 
+        #region ACTION RESULTS
         public async Task<IActionResult> Index(string status)
         {
-            IQueryable<ProjectEntity> projects = _context.Projects;
+            IQueryable<ProjectEntity> projects = _context.Projects.Include(p => p.TeamEntity).OrderByDescending(x=>x.Id);
 
             if (status == "active")
             {
@@ -29,12 +39,15 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
                 projects = projects.Where(p => !p.IsActive);
             }
 
+
+
+
             return View(await projects.ToListAsync());
         }
 
         public async Task<IActionResult> Detail(int id)
         {
-            var project = await _context.Projects.FindAsync(id);
+            var project = await _context.Projects.FirstOrDefaultAsync(p => p.Id == id);
             if (project == null)
             {
                 return NotFound();
@@ -50,6 +63,9 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
             {
                 return NotFound();
             }
+
+
+            ViewBag.Teams = new SelectList(await _context.Teams.ToListAsync(), "TeamId", "TeamName");
             return View(project);
         }
 
@@ -64,6 +80,8 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
                 {
                     Console.WriteLine(error.ErrorMessage);  // Hataları konsola yazdırın
                 }
+
+                ViewBag.Teams = new SelectList(await _context.Teams.ToListAsync(), "TeamId", "TeamName", updatedProject.TeamId);
                 return View(updatedProject);
             }
 
@@ -76,10 +94,10 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
                 }
 
                 existingProject.ProjectName = updatedProject.ProjectName;
-                existingProject.TeamMembers = updatedProject.TeamMembers;
+                existingProject.TeamId = updatedProject.TeamId; // Takım bilgisi güncelleniyor
                 existingProject.Description = updatedProject.Description;
                 existingProject.CreatedDate = updatedProject.CreatedDate;
-                existingProject.IsActive = updatedProject.IsActive; 
+                existingProject.IsActive = updatedProject.IsActive;
 
                 _context.Projects.Update(existingProject);
                 await _context.SaveChangesAsync();
@@ -114,27 +132,30 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddProject()
+        public async Task<IActionResult> AddProject()
         {
+            ViewBag.Teams = new SelectList(await _context.Teams.ToListAsync(), "TeamId", "TeamName");
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddProject(ProjectEntity project)
+        public async Task<IActionResult> AddProject (ProjectEntity project)
         {
-            if (ModelState.IsValid)
-            {
+
+            project.TeamEntity = _context.Teams.FirstOrDefault(x=>x.TeamId==project.TeamId);    
+ 
                 _context.Projects.Add(project);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            return View(project);
+ 
         }
 
         private bool ProjectExists(int id)
         {
             return _context.Projects.Any(e => e.Id == id);
         }
+        #endregion
     }
 }
+
