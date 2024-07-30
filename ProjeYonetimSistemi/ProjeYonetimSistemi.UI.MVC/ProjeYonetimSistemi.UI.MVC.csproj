@@ -38,7 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary1\ProjeYonetimSistemi.Dto.csproj" />
+    <ProjectReference Include="..\ProjeYonetimSistemi.Dto\ProjeYonetimSistemi.Dto.csproj" />
   </ItemGroup>
 
 </Project>

@@ -12,10 +12,11 @@ namespace ProjeYonetimSistemi.UI.MVC.Entity
         }
         [Key]
         public int TeamId { get; set; }
-      
-        public string TeamName { get; set; }
- 
 
-  
+        [Required] 
+        public string TeamName { get; set; }
+
+
+
     }
 }

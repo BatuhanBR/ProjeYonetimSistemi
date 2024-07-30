@@ -24,6 +24,6 @@ namespace ProjeYonetimSistemi.UI.MVC.Entity
         public int ProjectId { get; set; }
         public ProjectEntity Project { get; set; }
 
-        public ICollection<TeamMember> TeamMembers { get; set; }
+       
     }
 }

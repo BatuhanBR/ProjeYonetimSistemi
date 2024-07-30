@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ProjeYonetimSistemi.UI.MVC.Entity;
 using ProjeYonetimSistemi.UI.MVC.Models;
-using System.Reflection.Emit;
 
 namespace ProjeYonetimSistemi.UI.MVC.Context
 {

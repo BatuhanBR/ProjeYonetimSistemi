@@ -12,7 +12,7 @@ using ProjeYonetimSistemi.UI.MVC.Context;
 namespace ProjeYonetimSistemi.UI.MVC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240730121327_init")]
+    [Migration("20240730155023_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -169,12 +169,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TeamEntityTeamId")
-                        .HasColumnType("int");
-
                     b.HasKey("JobTitleId");
-
-                    b.HasIndex("TeamEntityTeamId");
 
                     b.ToTable("JobTitles");
                 });
@@ -368,32 +363,6 @@ namespace ProjeYonetimSistemi.UI.MVC.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("ProjeYonetimSistemi.UI.MVC.Models.TeamMember", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Surname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("TaskEntityId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TaskEntityId");
-
-                    b.ToTable("TeamMember");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -445,13 +414,6 @@ namespace ProjeYonetimSistemi.UI.MVC.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ProjeYonetimSistemi.UI.MVC.Entity.JobTitle", b =>
-                {
-                    b.HasOne("ProjeYonetimSistemi.UI.MVC.Entity.TeamEntity", null)
-                        .WithMany("JobTitles")
-                        .HasForeignKey("TeamEntityTeamId");
-                });
-
             modelBuilder.Entity("ProjeYonetimSistemi.UI.MVC.Entity.ProjectEntity", b =>
                 {
                     b.HasOne("ProjeYonetimSistemi.UI.MVC.Entity.TeamEntity", "TeamEntity")
@@ -483,7 +445,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Migrations
                         .IsRequired();
 
                     b.HasOne("ProjeYonetimSistemi.UI.MVC.Entity.TeamEntity", "Team")
-                        .WithMany("TeamMembers")
+                        .WithMany()
                         .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -491,25 +453,6 @@ namespace ProjeYonetimSistemi.UI.MVC.Migrations
                     b.Navigation("JobTitle");
 
                     b.Navigation("Team");
-                });
-
-            modelBuilder.Entity("ProjeYonetimSistemi.UI.MVC.Models.TeamMember", b =>
-                {
-                    b.HasOne("ProjeYonetimSistemi.UI.MVC.Entity.TaskEntity", null)
-                        .WithMany("TeamMembers")
-                        .HasForeignKey("TaskEntityId");
-                });
-
-            modelBuilder.Entity("ProjeYonetimSistemi.UI.MVC.Entity.TaskEntity", b =>
-                {
-                    b.Navigation("TeamMembers");
-                });
-
-            modelBuilder.Entity("ProjeYonetimSistemi.UI.MVC.Entity.TeamEntity", b =>
-                {
-                    b.Navigation("JobTitles");
-
-                    b.Navigation("TeamMembers");
                 });
 #pragma warning restore 612, 618
         }

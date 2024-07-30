@@ -51,6 +51,19 @@ namespace ProjeYonetimSistemi.UI.MVC.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "JobTitles",
+                columns: table => new
+                {
+                    JobTitleId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    JobName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_JobTitles", x => x.JobTitleId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Teams",
                 columns: table => new
                 {
@@ -170,25 +183,6 @@ namespace ProjeYonetimSistemi.UI.MVC.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "JobTitles",
-                columns: table => new
-                {
-                    JobTitleId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    JobName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TeamEntityTeamId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_JobTitles", x => x.JobTitleId);
-                    table.ForeignKey(
-                        name: "FK_JobTitles_Teams_TeamEntityTeamId",
-                        column: x => x.TeamEntityTeamId,
-                        principalTable: "Teams",
-                        principalColumn: "TeamId");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Projects",
                 columns: table => new
                 {
@@ -264,26 +258,6 @@ namespace ProjeYonetimSistemi.UI.MVC.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "TeamMember",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TaskEntityId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TeamMember", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_TeamMember_Tasks_TaskEntityId",
-                        column: x => x.TaskEntityId,
-                        principalTable: "Tasks",
-                        principalColumn: "Id");
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -324,11 +298,6 @@ namespace ProjeYonetimSistemi.UI.MVC.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_JobTitles_TeamEntityTeamId",
-                table: "JobTitles",
-                column: "TeamEntityTeamId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Projects_TeamId",
                 table: "Projects",
                 column: "TeamId");
@@ -337,11 +306,6 @@ namespace ProjeYonetimSistemi.UI.MVC.Migrations
                 name: "IX_Tasks_ProjectId",
                 table: "Tasks",
                 column: "ProjectId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TeamMember_TaskEntityId",
-                table: "TeamMember",
-                column: "TaskEntityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TeamMembers_JobTitleId",
@@ -372,7 +336,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "TeamMember");
+                name: "Tasks");
 
             migrationBuilder.DropTable(
                 name: "TeamMembers");
@@ -384,13 +348,10 @@ namespace ProjeYonetimSistemi.UI.MVC.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Tasks");
+                name: "Projects");
 
             migrationBuilder.DropTable(
                 name: "JobTitles");
-
-            migrationBuilder.DropTable(
-                name: "Projects");
 
             migrationBuilder.DropTable(
                 name: "Teams");

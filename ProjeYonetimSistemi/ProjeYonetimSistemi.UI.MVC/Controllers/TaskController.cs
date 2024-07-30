@@ -34,8 +34,10 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
             return View(tasks);
         }
 
+        [HttpGet]
         public IActionResult Create()
         {
+            // Projeleri al ve ViewBag'e ekle
             var projects = _context.Projects
                 .Select(p => new SelectListItem
                 {
@@ -43,6 +45,15 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
                     Text = p.ProjectName
                 }).ToList();
             ViewBag.Projects = projects;
+
+            // Durum seçeneklerini ViewBag'e ekle
+            ViewBag.Statuses = new List<SelectListItem>
+    {
+        new SelectListItem { Value = "Başlanmadı", Text = "Başlanmadı" },
+        new SelectListItem { Value = "Devam Ediyor", Text = "Devam Ediyor" },
+        new SelectListItem { Value = "Tamamlandı", Text = "Tamamlandı" }
+    };
+
             return View();
         }
 
@@ -50,23 +61,17 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(addTaskDto taskDto)
         {
-            if (ModelState.IsValid)
-            {
+           
                 var taskEntity = _mapper.Map<TaskEntity>(taskDto);
                 _context.Tasks.Add(taskEntity);
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction("Index");
-            }
+          
 
-            // Projeleri ViewBag'e tekrar yükleyin
-            ViewBag.Projects = _context.Projects
-                .Select(p => new SelectListItem
-                {
-                    Value = p.Id.ToString(),
-                    Text = p.ProjectName
-                }).ToList();
-            return View(taskDto);
+ 
+
+        
         }
 
         [HttpGet]

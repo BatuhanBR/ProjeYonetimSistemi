@@ -5,9 +5,9 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjeYonetimSistemi.UI.MVC", "ProjeYonetimSistemi.UI.MVC\ProjeYonetimSistemi.UI.MVC.csproj", "{184243AD-4C86-4B91-AF30-0BDB714DBD14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjeYonetimSistemi.Dto", "ClassLibrary1\ProjeYonetimSistemi.Dto.csproj", "{2726A3D5-718B-4735-8F82-BBB783677175}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libaries", "Libaries", "{BCF694F3-6DF9-4877-B7EF-F73D00C90C6A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjeYonetimSistemi.Dto", "ProjeYonetimSistemi.Dto\ProjeYonetimSistemi.Dto.csproj", "{B134FFBF-8FD6-4ABC-A07F-964E3526F38E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +19,10 @@ Global
 		{184243AD-4C86-4B91-AF30-0BDB714DBD14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{184243AD-4C86-4B91-AF30-0BDB714DBD14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{184243AD-4C86-4B91-AF30-0BDB714DBD14}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2726A3D5-718B-4735-8F82-BBB783677175}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2726A3D5-718B-4735-8F82-BBB783677175}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2726A3D5-718B-4735-8F82-BBB783677175}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2726A3D5-718B-4735-8F82-BBB783677175}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B134FFBF-8FD6-4ABC-A07F-964E3526F38E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B134FFBF-8FD6-4ABC-A07F-964E3526F38E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B134FFBF-8FD6-4ABC-A07F-964E3526F38E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B134FFBF-8FD6-4ABC-A07F-964E3526F38E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
