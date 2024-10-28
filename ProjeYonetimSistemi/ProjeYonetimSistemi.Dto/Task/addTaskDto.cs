@@ -1,7 +1,13 @@
-﻿namespace ProjeYonetimSistemi.UI.MVC.Dto.Task
+﻿using System.Web.Mvc;
+
+namespace ProjeYonetimSistemi.UI.MVC.Dto.Task
 {
     public class addTaskDto
     {
+        public addTaskDto()
+        {
+            Projects = new SelectListItem();
+        }
 
         public string? TaskName { get; set; } // Görev ismi
         public string? Description { get; set; }
@@ -11,7 +17,9 @@
         public int ProjectId { get; set; }
 
         public int TeamId { get; set; }
-        public string TeamMembers { get; set; }
+    
+
+        public SelectListItem Projects { get; set; }
 
     }
 }

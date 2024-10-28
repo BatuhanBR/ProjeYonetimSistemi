@@ -8,7 +8,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Entity
 
         public TaskEntity()
         {
-            Project=new ProjectEntity();
+        
         }
         public int Id { get; set; }
         public string? TaskName { get; set; } // Görev ismi
@@ -22,7 +22,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Entity
 
         [Required]
         public int ProjectId { get; set; }
-        public ProjectEntity Project { get; set; }
+     
 
        
     }

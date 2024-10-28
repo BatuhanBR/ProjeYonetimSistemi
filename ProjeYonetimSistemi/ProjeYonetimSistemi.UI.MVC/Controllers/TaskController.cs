@@ -29,7 +29,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
         public async Task<IActionResult> Index()
         {
             var tasks = await _context.Tasks
-                .Include(t => t.Project)  // İlişkilendirilmiş Project'leri yükleyin
+ 
                 .ToListAsync();
             return View(tasks);
         }
@@ -155,7 +155,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Controllers
 
         public IActionResult Detail(int id)
         {
-            var task = _context.Tasks.Include(t => t.Project).FirstOrDefault(t => t.Id == id);
+            var task = _context.Tasks.Include(t => t.ProjectId).FirstOrDefault(t => t.Id == id);
             if (task == null)
             {
                 return NotFound();
