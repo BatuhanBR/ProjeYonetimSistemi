@@ -258,6 +258,45 @@ namespace ProjeYonetimSistemi.UI.MVC.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "JobTitles",
+                columns: new[] { "JobTitleId", "JobName" },
+                values: new object[,]
+                {
+                    { 1, "Software Engineer" },
+                    { 2, "Project Manager" },
+                    { 3, "UI/UX Designer" },
+                    { 4, "QA Engineer" },
+                    { 5, "DevOps Engineer" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Teams",
+                columns: new[] { "TeamId", "TeamName" },
+                values: new object[,]
+                {
+                    { 1, "Development" },
+                    { 2, "Design" },
+                    { 3, "Marketing" },
+                    { 4, "Tosba Takımı" },
+                    { 5, "Yıldırım Takımı" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Projects",
+                columns: new[] { "Id", "CreatedDate", "Description", "IsActive", "ProjectName", "TeamId" },
+                values: new object[] { 1, new DateTime(2024, 10, 28, 16, 50, 41, 328, DateTimeKind.Local).AddTicks(1561), "Revamping the entire website for better UX/UI.", true, "Website Redesign", 1 });
+
+            migrationBuilder.InsertData(
+                table: "Projects",
+                columns: new[] { "Id", "CreatedDate", "Description", "IsActive", "ProjectName", "TeamId" },
+                values: new object[] { 2, new DateTime(2024, 10, 28, 16, 50, 41, 328, DateTimeKind.Local).AddTicks(1563), "Creating a mobile application for our e-commerce platform.", true, "Mobile App Development", 1 });
+
+            migrationBuilder.InsertData(
+                table: "Projects",
+                columns: new[] { "Id", "CreatedDate", "Description", "IsActive", "ProjectName", "TeamId" },
+                values: new object[] { 3, new DateTime(2024, 10, 28, 16, 50, 41, 328, DateTimeKind.Local).AddTicks(1565), "Promoting the new product launch on social media channels.", false, "Social Media Marketing", 3 });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",

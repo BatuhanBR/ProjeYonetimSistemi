@@ -12,7 +12,7 @@ using ProjeYonetimSistemi.UI.MVC.Context;
 namespace ProjeYonetimSistemi.UI.MVC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240730155023_init")]
+    [Migration("20241028135041_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -172,6 +172,33 @@ namespace ProjeYonetimSistemi.UI.MVC.Migrations
                     b.HasKey("JobTitleId");
 
                     b.ToTable("JobTitles");
+
+                    b.HasData(
+                        new
+                        {
+                            JobTitleId = 1,
+                            JobName = "Software Engineer"
+                        },
+                        new
+                        {
+                            JobTitleId = 2,
+                            JobName = "Project Manager"
+                        },
+                        new
+                        {
+                            JobTitleId = 3,
+                            JobName = "UI/UX Designer"
+                        },
+                        new
+                        {
+                            JobTitleId = 4,
+                            JobName = "QA Engineer"
+                        },
+                        new
+                        {
+                            JobTitleId = 5,
+                            JobName = "DevOps Engineer"
+                        });
                 });
 
             modelBuilder.Entity("ProjeYonetimSistemi.UI.MVC.Entity.ProjectEntity", b =>
@@ -204,6 +231,35 @@ namespace ProjeYonetimSistemi.UI.MVC.Migrations
                     b.HasIndex("TeamId");
 
                     b.ToTable("Projects");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(2024, 10, 28, 16, 50, 41, 328, DateTimeKind.Local).AddTicks(1561),
+                            Description = "Revamping the entire website for better UX/UI.",
+                            IsActive = true,
+                            ProjectName = "Website Redesign",
+                            TeamId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(2024, 10, 28, 16, 50, 41, 328, DateTimeKind.Local).AddTicks(1563),
+                            Description = "Creating a mobile application for our e-commerce platform.",
+                            IsActive = true,
+                            ProjectName = "Mobile App Development",
+                            TeamId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedDate = new DateTime(2024, 10, 28, 16, 50, 41, 328, DateTimeKind.Local).AddTicks(1565),
+                            Description = "Promoting the new product launch on social media channels.",
+                            IsActive = false,
+                            ProjectName = "Social Media Marketing",
+                            TeamId = 3
+                        });
                 });
 
             modelBuilder.Entity("ProjeYonetimSistemi.UI.MVC.Entity.TaskEntity", b =>
@@ -257,6 +313,33 @@ namespace ProjeYonetimSistemi.UI.MVC.Migrations
                     b.HasKey("TeamId");
 
                     b.ToTable("Teams");
+
+                    b.HasData(
+                        new
+                        {
+                            TeamId = 1,
+                            TeamName = "Development"
+                        },
+                        new
+                        {
+                            TeamId = 2,
+                            TeamName = "Design"
+                        },
+                        new
+                        {
+                            TeamId = 3,
+                            TeamName = "Marketing"
+                        },
+                        new
+                        {
+                            TeamId = 4,
+                            TeamName = "Tosba Takımı"
+                        },
+                        new
+                        {
+                            TeamId = 5,
+                            TeamName = "Yıldırım Takımı"
+                        });
                 });
 
             modelBuilder.Entity("ProjeYonetimSistemi.UI.MVC.Entity.TeamMemberEntity", b =>
