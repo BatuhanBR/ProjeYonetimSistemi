@@ -34,10 +34,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Context
             builder.ApplyConfiguration(new ProjectSeed());
   
 
-            builder.Entity<TaskEntity>()
-                .HasOne(t => t.Project)
-                .WithMany() // 
-                .HasForeignKey(t => t.ProjectId);
+        
 
             builder.Entity<TeamEntity>()
                .HasKey(t => t.TeamId);

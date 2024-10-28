@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjeYonetimSistemi.UI.MVC.Entity
 {
@@ -8,7 +7,7 @@ namespace ProjeYonetimSistemi.UI.MVC.Entity
 
         public ProjectEntity()
         {
-           TeamEntity= new TeamEntity();
+            TeamEntity = new TeamEntity();
 
 
         }
