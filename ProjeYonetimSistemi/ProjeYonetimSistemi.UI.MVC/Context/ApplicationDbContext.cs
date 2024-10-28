@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ProjeYonetimSistemi.UI.MVC.Entity;
 using ProjeYonetimSistemi.UI.MVC.Models;
+using ProjeYonetimSistemi.UI.MVC.Seeds;
+using System.Reflection.Emit;
 
 namespace ProjeYonetimSistemi.UI.MVC.Context
 {
@@ -24,6 +26,13 @@ namespace ProjeYonetimSistemi.UI.MVC.Context
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+
+            builder.ApplyConfiguration(new TeamSeed());
+            builder.ApplyConfiguration(new JobTitleSeed());
+    
+            builder.ApplyConfiguration(new ProjectSeed());
+  
 
             builder.Entity<TaskEntity>()
                 .HasOne(t => t.Project)
@@ -51,6 +60,8 @@ namespace ProjeYonetimSistemi.UI.MVC.Context
 
 
         }
+
+       
 
 
 
